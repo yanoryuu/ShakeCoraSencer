@@ -21,7 +21,7 @@ public class IngamePresenter : IPresenter
 
     public void Enter()
     {
-        ShakeStart();
+        ShakeStartCoraGame();
     }
 
     private void Bind()
@@ -47,6 +47,7 @@ public class IngamePresenter : IPresenter
             .Subscribe(_ =>
             {
                 view.OnShake();
+                model.OnShake();
                 // Observable.Timer(TimeSpan.FromMilliseconds(GameConst.cooldown))
                 //     .Subscribe(_ =>
                 //     {
@@ -65,7 +66,7 @@ public class IngamePresenter : IPresenter
     }
     
     //ゲーム開始
-    public void ShakeStart()
+    public void ShakeStartCoraGame()
     { 
         int startNumber = 3;
         int current = startNumber;
@@ -79,6 +80,7 @@ public class IngamePresenter : IPresenter
             .OnComplete(() =>
             {
                 model.OnShakeStart();
+                view.SetTimerBar(10f);
                 Bind();
             });
     }

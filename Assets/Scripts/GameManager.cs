@@ -17,5 +17,7 @@ public class GameManager : MonoBehaviour
     {
         model = new IngameModel();
         presenter = new IngamePresenter(model, view, inputManager);
+        
+        presenter.Enter();
     }
 }
