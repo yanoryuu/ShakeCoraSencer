@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class IngameView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI countDownText;
-    [SerializeField] private Image coraImage;
-    [SerializeField] private Image handImage;
+    [SerializeField] private GameObject coraImage;
+    [SerializeField] private GameObject handImage;
     private bool isUpCora;
     
     public void Initialize()
