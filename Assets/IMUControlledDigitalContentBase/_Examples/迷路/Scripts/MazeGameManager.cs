@@ -112,9 +112,9 @@ namespace IMUControllerDigitalAContentBase.Example.Maze
             // その際 ローパスフィルターを適用させる。
             _mazeRootRotate = Vector3.Lerp(_mazeRootRotate,
                 new Vector3(
-                    _IMUInputManager.Ahrs.y * -1.0f,
+                    _IMUInputManager.Ahrs.Value.y * -1.0f,
                     0.0f,
-                    _IMUInputManager.Ahrs.x * -1.0f
+                    _IMUInputManager.Ahrs.Value.x * -1.0f
                     )
                 , Time.deltaTime * 6.0f
             );

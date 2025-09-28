@@ -34,12 +34,12 @@ public class SetIMURotation : MonoBehaviour
             // 値を滑らかに変化させる
             if (_smooth)
             {
-                _rotation = Vector3.Lerp(_rotation, _inputManager.Ahrs, Time.deltaTime * _smoothLerpAmp);
+                _rotation = Vector3.Lerp(_rotation, _inputManager.Ahrs.Value, Time.deltaTime * _smoothLerpAmp);
             }
             // そのまま
             else
             {
-                _rotation = _inputManager.Ahrs;
+                _rotation = _inputManager.Ahrs.Value;
             }
             
             // 回転の値に代入
