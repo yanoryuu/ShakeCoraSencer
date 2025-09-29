@@ -1,6 +1,7 @@
 using System;
+using Cysharp.Threading.Tasks;
 using R3;
-using DG.Tweening;
+using UnityEngine;
 
 public class IngamePresenter : IPresenter
 {   
@@ -22,6 +23,8 @@ public class IngamePresenter : IPresenter
     public void Enter()
     {
         ShakeStartCoraGame();
+        view.Initialize();
+        model.Initialize();
     }
 
     private void Bind()
@@ -63,31 +66,36 @@ public class IngamePresenter : IPresenter
             {
                 ShakeEnd();
             }).AddTo(disposables);
+        
+        //タイマー反映
+        model.time.Subscribe(time =>
+            {
+                view.GameStart(time);
+                Debug.Log(time);
+            })
+            .AddTo(disposables);
     }
     
     //ゲーム開始
-    public void ShakeStartCoraGame()
-    { 
-        int startNumber = 3;
-        int current = startNumber;
+    private async UniTaskVoid ShakeStartCoraGame()
+    {
+        int countNum = GameConst.initCountDown;
 
-        DOTween.To(() => current, x => current = x, 0, startNumber)
-            .SetEase(Ease.Linear)
-            .OnUpdate(() =>
-            {
-                view.SetCountDownText(current);
-            })
-            .OnComplete(() =>
-            {
-                model.OnShakeStart();
-                view.SetTimerBar(10f);
-                Bind();
-            });
+        for (int i = 3; i > 0; i--)
+        {
+            view.SetCountDownText(i);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+        }
+        view.SetCountDownText(0);
+        Bind();
+        model.OnShakeStart();
     }
     
+    //ゲーム終了
     public void ShakeEnd()
     {
         model.OnShakeEnd();
+        view.OnShakeEnd();
         disposables.Dispose();
         disposables = new CompositeDisposable();
     }

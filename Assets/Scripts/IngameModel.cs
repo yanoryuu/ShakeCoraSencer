@@ -1,6 +1,7 @@
 using R3;
 using UnityEngine;
 using System;
+using DG.Tweening;
 
 public class IngameModel
 {
@@ -8,7 +9,6 @@ public class IngameModel
     public ReactiveProperty<Vector3> gyro { get; private set; }
     public ReactiveProperty<Vector3> ahrs { get; private set; }
 
-    // ★ シェイク状態を流す
     public ReactiveProperty<bool> isShaking { get; private set; }
 
     private float prevAccelMag = 1f;
@@ -19,6 +19,13 @@ public class IngameModel
     public bool isReceivingShake { get;private set; } = false;
 
     public ReactiveProperty<float> time;
+    
+    public void Initialize()
+    {
+        isShaking.Value = false;
+        
+        time.Value = 10f;
+    }
 
     public IngameModel()
     {
@@ -71,8 +78,12 @@ public class IngameModel
 
     public void OnShakeStart()
     {
+        Debug.Log("OnShakeStart");
+        
         isReceivingShake = true;
         time.Value = GameConst.limitTime;
+
+        DOVirtual.Float(GameConst.limitTime, 0.0f, GameConst.limitTime, value => time.Value = value);
     }
 
     public void OnShakeEnd()

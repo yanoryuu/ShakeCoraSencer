@@ -6,4 +6,5 @@ public static class GameConst
     public const float shakeThrethld = 1.6f; // g単位
     public const int cooldown = 600;              // 連打防止
     public const float limitTime = 10;
+    public const int initCountDown = 3;
 }
