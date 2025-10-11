@@ -44,20 +44,23 @@ public class IngamePresenter : IPresenter
             .Subscribe(acc => model.DetectShake(acc))
             .AddTo(disposables);
         
-        //シェイクになった時
-        model.isShaking
-            .Where(shake => shake) 
-            .Subscribe(_ =>
-            {
-                view.OnShake();
-                model.OnShake();
-                // Observable.Timer(TimeSpan.FromMilliseconds(GameConst.cooldown))
-                //     .Subscribe(_ =>
-                //     {
-                //         
-                //     })
-                //     .AddTo(disposables);
-            })
+        // //シェイクになった時
+        // model.isShaking
+        //     .Where(shake => shake) 
+        //     .Subscribe(_ =>
+        //     {
+        //         view.OnShake();
+        //         model.OnShake();
+        //         // Observable.Timer(TimeSpan.FromMilliseconds(GameConst.cooldown))
+        //         //     .Subscribe(_ =>
+        //         //     {
+        //         //         
+        //         //     })
+        //         //     .AddTo(disposables);
+        //     })
+        //     .AddTo(disposables);
+        
+        model.time.Subscribe(time =>view.SetTimer(time))
             .AddTo(disposables);
 
         //ゲーム終了時
@@ -66,14 +69,36 @@ public class IngamePresenter : IPresenter
             {
                 ShakeEnd();
             }).AddTo(disposables);
-        
-        //タイマー反映
-        model.time.Subscribe(time =>
+
+        model.shakeCount.Subscribe(count =>
             {
-                view.GameStart(time);
-                Debug.Log(time);
+                Debug.Log(count);
+                switch (count)
+                {
+                    case(0):
+                        view.OnBarUP(0);
+                        break;
+                    case(5):
+                        view.OnBarUP(1);
+                        break;
+                    case(10):
+                        view.OnBarUP(2);
+                        break;
+                    case(15):
+                        view.OnBarUP(3);
+                        break;
+                    case(20):
+                        view.OnBarUP(4);
+                        break;
+                }
+                view.OnShakeCora(count);
             })
             .AddTo(disposables);
+        
+        // //テスト用
+        // Observable.Interval(TimeSpan.FromSeconds(0.2f))
+        //     .Subscribe(_=>model.OnShake())
+        //     .AddTo(disposables);
     }
     
     //ゲーム開始
@@ -87,6 +112,7 @@ public class IngamePresenter : IPresenter
             await UniTask.Delay(TimeSpan.FromSeconds(1));
         }
         view.SetCountDownText(0);
+        view.GameStart();
         Bind();
         model.OnShakeStart();
     }

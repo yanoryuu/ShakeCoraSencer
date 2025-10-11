@@ -1,5 +1,5 @@
 using DG.Tweening;
-using JetBrains.Annotations;
+using R3;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,11 +27,15 @@ public class IngameView : MonoBehaviour
     [SerializeField] private GameObject shakeImg;
 
     // UVスクロール設定
-    [SerializeField] private float uvLoopSeconds = 2f;  // UVが1タイル分進む時間
+    [SerializeField] private float uvLoopSeconds = 10f;  // UVが1タイル分進む時間
     [SerializeField] private bool uvIgnoreTimeScale = true;
 
     private Tween _timerTween;
     private Tween _uvTween;
+
+    private Tween hueTween;
+
+    private bool isUp;
 
     public void Initialize()
     {
@@ -59,17 +63,13 @@ public class IngameView : MonoBehaviour
             coraCO2Bar.uvRect = uv;
         }
         
+        handImage.transform.localPosition = new Vector3(-16, 0, 0);
+        
         shakeImg.SetActive(false);
     }
 
-    // 降った時の演出（必要に応じて）
-    public void OnShake()
-    {
-        Debug.Log("OnShake");
-    }
-
     //カウントダウン表示
-    public void SetCountDownText(int countDown)
+    public void SetCountDownText(float countDown)
     {
         //初期化
         countDownObj.SetActive(true);
@@ -92,29 +92,22 @@ public class IngameView : MonoBehaviour
                 countDownObj.SetActive(false);
                 sequence.Kill();
             });
-        
+
+        coraImage.transform.DOLocalMoveY(0, 2f)
+            .SetEase(Ease.OutCubic);
+
     }
 
     //ゲーム開始
-    public void GameStart(float time)
+    public void GameStart()
     {
-        //チャージバー表示
-        SetTimerBar(time);
-        
         shakeImg.SetActive(true);
     }
     
     //チャージバー表示
-    public void SetTimerBar(float t)
+    public void SetTimer(float t)
     {
         timerText.text = t.ToString("0.00");
-
-        float p = 1f - (t / GameConst.limitTime); // 進行度 0→1
-        coraTimerBar.fillAmount = p;
-        coraCO2Mask.fillAmount = p;
-
-        // UV無限スクロール開始（下方向に1タイル/周）
-        StartUVScrollY(uvLoopSeconds);
     }
 
     private void StartUVScrollY(float loopSeconds)
@@ -137,14 +130,117 @@ public class IngameView : MonoBehaviour
             .SetUpdate(UpdateType.Late);
     }
 
+    //コーラを振った数が変わったとき
+    public void OnShakeCora(int shakeCount)
+    {
+        float p = Mathf.Clamp01(shakeCount / 20f); // 進行度 0→1
+        coraTimerBar.fillAmount = p;
+        coraCO2Mask.fillAmount = p;
+        
+        OnShake();
+    }
+    
+    // 降った時の演出（必要に応じて）
+    public void OnShake()
+    {
+        Debug.Log("OnShake");
+        if (isUp)
+        {
+            handImage.transform.localPosition = new Vector3(-16, 100, 0);
+            handImage.transform.localEulerAngles = new Vector3(0, 0, -20);
+        }
+        else
+        {
+            handImage.transform.localPosition = new Vector3(-16, -100, 0);
+            handImage.transform.localEulerAngles = new Vector3(0, 0, 20);       
+        }
+        
+        isUp = !isUp;
+    }
+
+    //チャージのバーが一つ上に行ったときの演出
+    public void OnBarUP(int barStage)
+    {
+        StopUVScroll();
+
+        switch (barStage)
+        {
+            case 0:
+                StartUVScrollY(10f);
+                coraCO2Mask.DOColor(new Color32(120, 0,   0,   255), 0.5f);
+                Debug.Log("Color32(120,0,0,255)");
+                break;
+
+            case 1:
+                StartUVScrollY(5f);
+                coraCO2Mask.DOColor(new Color32(180, 0,   0,   255), 0.5f);
+                Debug.Log("Color32(180,0,0,255)");
+                break;
+
+            case 2:
+                StartUVScrollY(2f);
+                coraCO2Mask.DOColor(new Color32(200, 0, 0, 255), 0.5f);
+                Debug.Log("Color32(200,255,255,255)");
+                break;
+
+            case 3:
+                StartUVScrollY(1f);
+                coraCO2Mask.DOColor(new Color32(255, 63,  63,  255), 0.5f);
+                Debug.Log("Color32(255,63,63,255)");
+                break;
+
+            case 4:
+                StartRainbow();
+                StartUVScrollY(0.1f);
+                Debug.Log("StartRainbow");
+                break;
+
+            case 5:
+                StartUVScrollY(0.1f);
+                break;
+        }
+    }
+    
+    private void StartRainbow()
+    {
+        // 既存のHueアニメを止める
+        if (hueTween != null)
+        {
+            hueTween.Kill();
+            hueTween = null;
+        }
+
+        // 現在色をHSVへ
+        Color.RGBToHSV(coraCO2Mask.color, out float h, out float s, out float v);
+        float startHue = h;
+
+        // Hueを0→1へ回し続ける（durationはお好みで）
+        const float duration = 0.1f; // ← -3 は無効。正の値に！
+
+        hueTween = DOTween.To(
+                () => startHue,
+                x =>
+                {
+                    startHue = x % 1f; // 0〜1ループ
+                    coraCO2Mask.color = Color.HSVToRGB(startHue, s, v);
+                },
+                1f,
+                duration
+            )
+            .SetLoops(-1, LoopType.Restart)
+            .SetEase(Ease.Linear);
+    }
+
     public void OnShakeEnd()
     {
         _timerTween?.Kill();
+        _timerTween = null;
     }
 
     public void StopUVScroll()
     {
         _uvTween?.Kill();
+        _uvTween = null;
     }
 
     private void OnDisable()
