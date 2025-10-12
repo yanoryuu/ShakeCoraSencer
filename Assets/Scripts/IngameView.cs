@@ -140,6 +140,7 @@ public class IngameView : MonoBehaviour
         OnShake();
     }
     
+    
     // 降った時の演出（必要に応じて）
     public void OnShake()
     {

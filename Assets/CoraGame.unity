@@ -702,11 +702,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: AutoOpenSerial
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: SerialPortName
+      value: /dev/tty.usbserial-569C0163381
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: _serialPortNames.Array.size
-      value: 133
+      value: 135
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[0]'
@@ -726,518 +734,526 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[4]'
-      value: /dev/ttyp0
+      value: /dev/tty.usbserial-569C0163381
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[5]'
-      value: /dev/ttyp1
+      value: /dev/ttyp0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[6]'
-      value: /dev/ttyp2
+      value: /dev/ttyp1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[7]'
-      value: /dev/ttyp3
+      value: /dev/ttyp2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[8]'
-      value: /dev/ttyp4
+      value: /dev/ttyp3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[9]'
-      value: /dev/ttyp5
+      value: /dev/ttyp4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[10]'
-      value: /dev/ttyp6
+      value: /dev/ttyp5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[11]'
-      value: /dev/ttyp7
+      value: /dev/ttyp6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[12]'
-      value: /dev/ttyp8
+      value: /dev/ttyp7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[13]'
-      value: /dev/ttyp9
+      value: /dev/ttyp8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[14]'
-      value: /dev/ttypa
+      value: /dev/ttyp9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[15]'
-      value: /dev/ttypb
+      value: /dev/ttypa
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[16]'
-      value: /dev/ttypc
+      value: /dev/ttypb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[17]'
-      value: /dev/ttypd
+      value: /dev/ttypc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[18]'
-      value: /dev/ttype
+      value: /dev/ttypd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[19]'
-      value: /dev/ttypf
+      value: /dev/ttype
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[20]'
-      value: /dev/ttyq0
+      value: /dev/ttypf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[21]'
-      value: /dev/ttyq1
+      value: /dev/ttyq0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[22]'
-      value: /dev/ttyq2
+      value: /dev/ttyq1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[23]'
-      value: /dev/ttyq3
+      value: /dev/ttyq2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[24]'
-      value: /dev/ttyq4
+      value: /dev/ttyq3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[25]'
-      value: /dev/ttyq5
+      value: /dev/ttyq4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[26]'
-      value: /dev/ttyq6
+      value: /dev/ttyq5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[27]'
-      value: /dev/ttyq7
+      value: /dev/ttyq6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[28]'
-      value: /dev/ttyq8
+      value: /dev/ttyq7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[29]'
-      value: /dev/ttyq9
+      value: /dev/ttyq8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[30]'
-      value: /dev/ttyqa
+      value: /dev/ttyq9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[31]'
-      value: /dev/ttyqb
+      value: /dev/ttyqa
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[32]'
-      value: /dev/ttyqc
+      value: /dev/ttyqb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[33]'
-      value: /dev/ttyqd
+      value: /dev/ttyqc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[34]'
-      value: /dev/ttyqe
+      value: /dev/ttyqd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[35]'
-      value: /dev/ttyqf
+      value: /dev/ttyqe
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[36]'
-      value: /dev/ttyr0
+      value: /dev/ttyqf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[37]'
-      value: /dev/ttyr1
+      value: /dev/ttyr0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[38]'
-      value: /dev/ttyr2
+      value: /dev/ttyr1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[39]'
-      value: /dev/ttyr3
+      value: /dev/ttyr2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[40]'
-      value: /dev/ttyr4
+      value: /dev/ttyr3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[41]'
-      value: /dev/ttyr5
+      value: /dev/ttyr4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[42]'
-      value: /dev/ttyr6
+      value: /dev/ttyr5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[43]'
-      value: /dev/ttyr7
+      value: /dev/ttyr6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[44]'
-      value: /dev/ttyr8
+      value: /dev/ttyr7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[45]'
-      value: /dev/ttyr9
+      value: /dev/ttyr8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[46]'
-      value: /dev/ttyra
+      value: /dev/ttyr9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[47]'
-      value: /dev/ttyrb
+      value: /dev/ttyra
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[48]'
-      value: /dev/ttyrc
+      value: /dev/ttyrb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[49]'
-      value: /dev/ttyrd
+      value: /dev/ttyrc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[50]'
-      value: /dev/ttyre
+      value: /dev/ttyrd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[51]'
-      value: /dev/ttyrf
+      value: /dev/ttyre
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[52]'
-      value: /dev/ttys0
+      value: /dev/ttyrf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[53]'
-      value: /dev/ttys000
+      value: /dev/ttys0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[54]'
-      value: /dev/ttys1
+      value: /dev/ttys000
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[55]'
-      value: /dev/ttys2
+      value: /dev/ttys001
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[56]'
-      value: /dev/ttys3
+      value: /dev/ttys1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[57]'
-      value: /dev/ttys4
+      value: /dev/ttys2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[58]'
-      value: /dev/ttys5
+      value: /dev/ttys3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[59]'
-      value: /dev/ttys6
+      value: /dev/ttys4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[60]'
-      value: /dev/ttys7
+      value: /dev/ttys5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[61]'
-      value: /dev/ttys8
+      value: /dev/ttys6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[62]'
-      value: /dev/ttys9
+      value: /dev/ttys7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[63]'
-      value: /dev/ttysa
+      value: /dev/ttys8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[64]'
-      value: /dev/ttysb
+      value: /dev/ttys9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[65]'
-      value: /dev/ttysc
+      value: /dev/ttysa
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[66]'
-      value: /dev/ttysd
+      value: /dev/ttysb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[67]'
-      value: /dev/ttyse
+      value: /dev/ttysc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[68]'
-      value: /dev/ttysf
+      value: /dev/ttysd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[69]'
-      value: /dev/ttyt0
+      value: /dev/ttyse
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[70]'
-      value: /dev/ttyt1
+      value: /dev/ttysf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[71]'
-      value: /dev/ttyt2
+      value: /dev/ttyt0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[72]'
-      value: /dev/ttyt3
+      value: /dev/ttyt1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[73]'
-      value: /dev/ttyt4
+      value: /dev/ttyt2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[74]'
-      value: /dev/ttyt5
+      value: /dev/ttyt3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[75]'
-      value: /dev/ttyt6
+      value: /dev/ttyt4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[76]'
-      value: /dev/ttyt7
+      value: /dev/ttyt5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[77]'
-      value: /dev/ttyt8
+      value: /dev/ttyt6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[78]'
-      value: /dev/ttyt9
+      value: /dev/ttyt7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[79]'
-      value: /dev/ttyta
+      value: /dev/ttyt8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[80]'
-      value: /dev/ttytb
+      value: /dev/ttyt9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[81]'
-      value: /dev/ttytc
+      value: /dev/ttyta
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[82]'
-      value: /dev/ttytd
+      value: /dev/ttytb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[83]'
-      value: /dev/ttyte
+      value: /dev/ttytc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[84]'
-      value: /dev/ttytf
+      value: /dev/ttytd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[85]'
-      value: /dev/ttyu0
+      value: /dev/ttyte
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[86]'
-      value: /dev/ttyu1
+      value: /dev/ttytf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[87]'
-      value: /dev/ttyu2
+      value: /dev/ttyu0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[88]'
-      value: /dev/ttyu3
+      value: /dev/ttyu1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[89]'
-      value: /dev/ttyu4
+      value: /dev/ttyu2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[90]'
-      value: /dev/ttyu5
+      value: /dev/ttyu3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[91]'
-      value: /dev/ttyu6
+      value: /dev/ttyu4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[92]'
-      value: /dev/ttyu7
+      value: /dev/ttyu5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[93]'
-      value: /dev/ttyu8
+      value: /dev/ttyu6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[94]'
-      value: /dev/ttyu9
+      value: /dev/ttyu7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[95]'
-      value: /dev/ttyua
+      value: /dev/ttyu8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[96]'
-      value: /dev/ttyub
+      value: /dev/ttyu9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[97]'
-      value: /dev/ttyuc
+      value: /dev/ttyua
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[98]'
-      value: /dev/ttyud
+      value: /dev/ttyub
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[99]'
-      value: /dev/ttyue
+      value: /dev/ttyuc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[100]'
-      value: /dev/ttyuf
+      value: /dev/ttyud
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[101]'
-      value: /dev/ttyv0
+      value: /dev/ttyue
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[102]'
-      value: /dev/ttyv1
+      value: /dev/ttyuf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[103]'
-      value: /dev/ttyv2
+      value: /dev/ttyv0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[104]'
-      value: /dev/ttyv3
+      value: /dev/ttyv1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[105]'
-      value: /dev/ttyv4
+      value: /dev/ttyv2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[106]'
-      value: /dev/ttyv5
+      value: /dev/ttyv3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[107]'
-      value: /dev/ttyv6
+      value: /dev/ttyv4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[108]'
-      value: /dev/ttyv7
+      value: /dev/ttyv5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[109]'
-      value: /dev/ttyv8
+      value: /dev/ttyv6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[110]'
-      value: /dev/ttyv9
+      value: /dev/ttyv7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[111]'
-      value: /dev/ttyva
+      value: /dev/ttyv8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[112]'
-      value: /dev/ttyvb
+      value: /dev/ttyv9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[113]'
-      value: /dev/ttyvc
+      value: /dev/ttyva
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[114]'
-      value: /dev/ttyvd
+      value: /dev/ttyvb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[115]'
-      value: /dev/ttyve
+      value: /dev/ttyvc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[116]'
-      value: /dev/ttyvf
+      value: /dev/ttyvd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[117]'
-      value: /dev/ttyw0
+      value: /dev/ttyve
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[118]'
-      value: /dev/ttyw1
+      value: /dev/ttyvf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[119]'
-      value: /dev/ttyw2
+      value: /dev/ttyw0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[120]'
-      value: /dev/ttyw3
+      value: /dev/ttyw1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[121]'
-      value: /dev/ttyw4
+      value: /dev/ttyw2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[122]'
-      value: /dev/ttyw5
+      value: /dev/ttyw3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[123]'
-      value: /dev/ttyw6
+      value: /dev/ttyw4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[124]'
-      value: /dev/ttyw7
+      value: /dev/ttyw5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[125]'
-      value: /dev/ttyw8
+      value: /dev/ttyw6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[126]'
-      value: /dev/ttyw9
+      value: /dev/ttyw7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[127]'
-      value: /dev/ttywa
+      value: /dev/ttyw8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[128]'
-      value: /dev/ttywb
+      value: /dev/ttyw9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[129]'
-      value: /dev/ttywc
+      value: /dev/ttywa
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[130]'
-      value: /dev/ttywd
+      value: /dev/ttywb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[131]'
-      value: /dev/ttywe
+      value: /dev/ttywc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[132]'
+      value: /dev/ttywd
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: '_serialPortNames.Array.data[133]'
+      value: /dev/ttywe
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: '_serialPortNames.Array.data[134]'
       value: /dev/ttywf
       objectReference: {fileID: 0}
     - target: {fileID: 4464968293933139766, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
@@ -1286,7 +1302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5797561496506719485, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -29,13 +29,13 @@ public class IngamePresenter : IPresenter
 
     private void Bind()
     {
-        inputManager.Acceleration.Subscribe(acc => model.SetAcceleration(acc))
+        inputManager.AccelerationSub.Subscribe(acc => model.SetAcceleration(acc))
             .AddTo(disposables);
 
-        inputManager.Gyro.Subscribe(gyro => model.SetGyro(gyro))
+        inputManager.GyroSub.Subscribe(gyro => model.SetGyro(gyro))
             .AddTo(disposables);
 
-        inputManager.Ahrs.Subscribe(ahrs => model.SetAhrs(ahrs))
+        inputManager.AhrsSub.Subscribe(ahrs => model.SetAhrs(ahrs))
             .AddTo(disposables);
 
         //判定
@@ -45,20 +45,13 @@ public class IngamePresenter : IPresenter
             .AddTo(disposables);
         
         // //シェイクになった時
-        // model.isShaking
-        //     .Where(shake => shake) 
-        //     .Subscribe(_ =>
-        //     {
-        //         view.OnShake();
-        //         model.OnShake();
-        //         // Observable.Timer(TimeSpan.FromMilliseconds(GameConst.cooldown))
-        //         //     .Subscribe(_ =>
-        //         //     {
-        //         //         
-        //         //     })
-        //         //     .AddTo(disposables);
-        //     })
-        //     .AddTo(disposables);
+        model.isShaking
+            .Where(shake => shake) 
+            .Subscribe(_ =>
+            {
+                model.OnShake();
+            })
+            .AddTo(disposables);
         
         model.time.Subscribe(time =>view.SetTimer(time))
             .AddTo(disposables);
