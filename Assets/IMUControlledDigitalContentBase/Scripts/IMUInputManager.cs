@@ -51,18 +51,21 @@ public class IMUInputManager : MonoBehaviour
     /// <summary>
     /// 加速度
     /// </summary>
-    public ReactiveProperty<Vector3> Acceleration　= new ReactiveProperty<Vector3>()　;
+    public ReactiveProperty<Vector3> AccelerationSub　= new ReactiveProperty<Vector3>();
+    public Vector3 acceleration;
 
     /// <summary>
     /// ジャイロ
     /// </summary>
-    public ReactiveProperty<Vector3> Gyro　= new ReactiveProperty<Vector3>()　;
+    public ReactiveProperty<Vector3> GyroSub　= new ReactiveProperty<Vector3>();
+    public Vector3 gyro;
 
     /// <summary>
     /// 姿勢方位基準システム（Attitude and Heading Reference System）
     /// Pitch(), Roll(), Yaw()
     /// </summary>
-    public ReactiveProperty<Vector3> Ahrs = new ReactiveProperty<Vector3>();
+    public ReactiveProperty<Vector3> AhrsSub = new ReactiveProperty<Vector3>();
+    public Vector3 ahrs;   
 
     /// <summary>
     /// ボタンAが押されているかどうか
@@ -159,7 +162,7 @@ public class IMUInputManager : MonoBehaviour
         if (_messageText != string.Empty)
         {
             // 受信したメッセージテキストをVector3型の加速度, 角速度, 姿勢 の値に変換する
-            ConvertStringToIMU(_messageText, out Acceleration, out Gyro, out Ahrs, out ButtonA, out ButtonB, out ButtonC);
+            ConvertStringToIMU(_messageText, out acceleration, out gyro, out ahrs, out ButtonA, out ButtonB, out ButtonC);
         } 
 
         // キーボード入力モードであれば
@@ -169,11 +172,15 @@ public class IMUInputManager : MonoBehaviour
             if (_keyboardEmulator != null)
             {
                 // 値を代入
-                Acceleration.Value = _keyboardEmulator.Acceleration;
-                Gyro.Value         = _keyboardEmulator.Gyro;
-                Ahrs.Value         = _keyboardEmulator.Ahrs;
+                acceleration = _keyboardEmulator.Acceleration;
+                gyro         = _keyboardEmulator.Gyro;
+                ahrs         = _keyboardEmulator.Ahrs;
             }
         }
+        
+        AccelerationSub.Value = acceleration;
+        GyroSub.Value = gyro;
+        AhrsSub.Value = ahrs;
     }
 
     /// <summary>
@@ -267,7 +274,7 @@ public class IMUInputManager : MonoBehaviour
     /// <param name="gyro"></param>
     /// <param name="ahrl"></param>
     /// <exception cref="System.ArgumentException"></exception>
-    void ConvertStringToIMU(string str, out ReactiveProperty<Vector3> acc, out ReactiveProperty<Vector3> gyro, out ReactiveProperty<Vector3> ahrl, out bool buttonA, out bool buttonB, out bool buttonC)
+    void ConvertStringToIMU(string str, out　Vector3 acc, out Vector3 gyro, out Vector3 ahrl, out bool buttonA, out bool buttonB, out bool buttonC)
     {
         // 文字列を','で分割する
         string[] parts = str.Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -291,14 +298,10 @@ public class IMUInputManager : MonoBehaviour
         int btnA = int.Parse(parts[9].Trim());
         int btnB = int.Parse(parts[10].Trim());
         int btnC = int.Parse(parts[11].Trim());
-
-        acc = new ReactiveProperty<Vector3>();
-        gyro = new ReactiveProperty<Vector3>();
-        ahrl = new ReactiveProperty<Vector3>();
         
-        acc.Value  = new Vector3(accX, accY, accZ);
-        gyro.Value = new Vector3(gyroX, gyroY, gyroZ);
-        ahrl.Value = new Vector3(pitch, roll, yaw);
+        acc = new Vector3(accX, accY, accZ);
+        gyro = new Vector3(gyroX, gyroY, gyroZ);
+        ahrl = new Vector3(pitch, roll, yaw);
 
         buttonA = btnA > 0 ? true : false;
         buttonB = btnB > 0 ? true : false;

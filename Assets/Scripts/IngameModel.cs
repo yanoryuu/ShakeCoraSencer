@@ -65,10 +65,8 @@ public class IngameModel
             isShaking.Value = true;
         }
         
-        // 普段は false に戻す
-        isShaking.Value = false;
     }
-
+    
     public void OnShake()
     {
         isShaking.Value = false;
