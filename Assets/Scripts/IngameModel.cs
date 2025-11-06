@@ -24,7 +24,9 @@ public class IngameModel
     {
         isShaking.Value = false;
         
-        time.Value = 10f;
+        shakeCount.Value = 0;
+        
+        time.Value = GameConst.limitTime;
     }
 
     public IngameModel()
@@ -65,6 +67,22 @@ public class IngameModel
             isShaking.Value = true;
         }
         
+    }
+
+    public float CalculateColaLaunchPower(int shakeCount)
+    {
+        var power = Mathf.Clamp(shakeCount*shakeCount*8,1,17500);
+        
+        Debug.Log("power = " + power);
+        return power;
+    }
+
+    public float CalculateCoraLaunchTime(int shakeCount)
+    {
+        var time = Mathf.Clamp(Mathf.Sqrt(shakeCount*7), 1, 20);
+
+        Debug.Log("time="+time);
+        return time;
     }
     
     public void OnShake()

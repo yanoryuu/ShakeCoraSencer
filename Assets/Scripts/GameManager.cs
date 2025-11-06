@@ -1,23 +1,37 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class GameManager : MonoBehaviour
 {
+    //Manager
+    private StateManager stateManager;
+    [SerializeField] private PanelManager panelManager;
+    
     //Model
-    public IngameModel model{ get; private set; }
+    private IngameModel ingameModel;
+    private ResultModel resultModel;
     
     //Presenter
-    public IngamePresenter presenter{ get; private set; }
+    private IngamePresenter ingamePresenter;
+    private ResultPresenter resultPresenter;
+    private HomePresenter homePresenter;
     
     //View
-    [SerializeField] private IngameView view;
+    [SerializeField] private IngameView ingameView;
+    [SerializeField] private ResultView resultView;
+    [SerializeField] private HomeView homeView;
     
     //その他
     [SerializeField] private IMUInputManager inputManager;
     
-    private void Awake()
+    private void Start()
     {
-        model = new IngameModel();
-        presenter = new IngamePresenter(model, view, inputManager);
+        stateManager = new StateManager(panelManager);
         
-        presenter.Enter();
+        ingameModel = new IngameModel();
+        resultModel = new ResultModel();
+
+        homePresenter = new HomePresenter(homeView, stateManager);
+        ingamePresenter = new IngamePresenter(ingameModel, ingameView, inputManager, resultModel, stateManager);
+        resultPresenter = new ResultPresenter(resultView, resultModel, stateManager);
     }
 }

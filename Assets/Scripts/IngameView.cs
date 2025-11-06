@@ -10,11 +10,20 @@ public class IngameView : MonoBehaviour
     [SerializeField] private GameObject countDownObj;
     [SerializeField] private TextMeshProUGUI countDownText;
     [SerializeField] private TextMeshProUGUI countDownBackGroundText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     [Header("Visuals")]
     [SerializeField] private GameObject coraImage;
     [SerializeField] private GameObject handImage;
+    [SerializeField] private GameObject thumbImage;
+    [SerializeField] private GameObject fingerImage;
+    [SerializeField] private GameObject paramImage;
+    [SerializeField] private GameObject backGround;
+    [SerializeField] private GameObject coraEneImage;
+    [SerializeField] private GameObject jetEffect;
 
+    private Vector3 backGroundInitPos;
+ 
     [Header("CO2 UI")]
     [SerializeField] private RawImage coraCO2Bar;   // スクロールさせるRawImage
     // [SerializeField] private RectMask2D coraCO2Mask;     // type=Filled にしてfillAmountでマスク
@@ -29,14 +38,31 @@ public class IngameView : MonoBehaviour
     // UVスクロール設定
     [SerializeField] private float uvLoopSeconds = 10f;  // UVが1タイル分進む時間
     [SerializeField] private bool uvIgnoreTimeScale = true;
+    
+    //デバッグ用
+    [SerializeField] private Button debugButton;
 
     private Tween _timerTween;
     private Tween _uvTween;
 
     private Tween hueTween;
+    
+    private Sequence launchSequence;
+    private Sequence preparationLaunchSequence;
 
     private bool isUp;
 
+    public Subject<Unit> onshakedone = new Subject<Unit>();
+    
+    public Subject<Unit> onlaunch = new Subject<Unit>();
+    
+    public Subject<Unit> onlaunchend = new Subject<Unit>();
+
+    private void Awake()
+    {
+        debugButton.onClick.AddListener(() => onshakedone.OnNext(Unit.Default));
+        backGroundInitPos = backGround.transform.localPosition;
+    }
     public void Initialize()
     {
         // Filled必須
@@ -62,10 +88,34 @@ public class IngameView : MonoBehaviour
             uv.height = Mathf.Max(uv.height, 0.0001f);
             coraCO2Bar.uvRect = uv;
         }
-        
+        //手の画像の初期化
         handImage.transform.localPosition = new Vector3(-16, 0, 0);
         
+        thumbImage.GetComponent<Image>().DOFade(1,0.5f);
+        fingerImage.GetComponent<Image>().DOFade(1,0.5f);
+        paramImage.GetComponent<Image>().DOFade(1,0.5f);
+        
+        //コーラ画像場所の初期化
+        coraImage.transform.localPosition = new Vector3(0, 900, 0);
+        
+        //「ふれ！」画像表示
         shakeImg.SetActive(false);
+        
+        //コーラエネルギー表示
+        coraEneImage.SetActive(true);
+        
+        //タイマー表示
+        timerText.gameObject.SetActive(true);
+        
+        //スコア用テキスト非表示
+        scoreText.gameObject.SetActive(false);
+        
+        //発射エフェクト非表示
+        jetEffect.SetActive(false);
+        jetEffect.GetComponent<ParticleSystem>().Stop();
+        
+        //背景画像位置の初期化
+        backGround.transform.localPosition = backGroundInitPos;
     }
 
     //カウントダウン表示
@@ -133,17 +183,10 @@ public class IngameView : MonoBehaviour
     //コーラを振った数が変わったとき
     public void OnShakeCora(int shakeCount)
     {
-        float p = Mathf.Clamp01(shakeCount / 20f); // 進行度 0→1
+        float p = Mathf.Clamp01(shakeCount / 45f); // 進行度 0→1
         coraTimerBar.fillAmount = p;
         coraCO2Mask.fillAmount = p;
         
-        OnShake();
-    }
-    
-    
-    // 降った時の演出（必要に応じて）
-    public void OnShake()
-    {
         Debug.Log("OnShake");
         if (isUp)
         {
@@ -242,6 +285,72 @@ public class IngameView : MonoBehaviour
     {
         _uvTween?.Kill();
         _uvTween = null;
+    }
+
+    public void PreparationLaunchCora()
+    {
+        handImage.transform.localPosition = new Vector3(0, 0, 0);
+        handImage.transform.localEulerAngles = new Vector3(0, 0, 0);
+        
+        shakeImg.SetActive(false);
+        timerText.gameObject.SetActive(false);
+        shakeImg.SetActive(false);
+        preparationLaunchSequence = DOTween.Sequence()
+            .Append(coraImage.transform.DOLocalMove(new Vector3(0, -240, 0), 0.5f))
+            .Join(coraImage.transform.DORotate(new Vector3(0, 0, 180), 0.5f, RotateMode.FastBeyond360))
+            .Join(thumbImage.GetComponent<Image>().DOFade(0,0.5f))
+            .Join(fingerImage.GetComponent<Image>().DOFade(0,0.5f))
+            .Join(paramImage.GetComponent<Image>().DOFade(0,0.5f))
+            .AppendInterval(0.25f)
+            .Append(coraImage.transform.DOShakePosition(3f, 10f, 100, 90f, false, false))
+            .Append(coraImage.transform.DOLocalMove(new Vector3(0, -240, 0), 0.01f))
+            .OnComplete(() =>
+            {
+                onlaunch.OnNext(Unit.Default);
+                preparationLaunchSequence.Kill();
+            });
+    }
+
+    public void LaunchCora(float power,float time)
+    {
+        scoreText.gameObject.SetActive(true);
+        jetEffect.SetActive(true);
+
+        var ps = jetEffect.GetComponent<ParticleSystem>();
+        ps.Play();
+        
+        Debug.Log($"Power = {power}");
+        
+        
+        
+        launchSequence = DOTween.Sequence();
+        coraEneImage.SetActive(false);
+        launchSequence.Append(backGround.transform.DOLocalMoveY(backGround.transform.localPosition.y-power, time))
+            .Join(DOVirtual.Float(0,power,time, value =>
+            {
+                scoreText.text = value.ToString("0");
+            }))
+            .SetEase(Ease.InOutCubic)
+            .Join(DOVirtual.Float(100,0,time, value =>
+            {
+                var psem = ps.emission;
+                psem.rateOverTimeMultiplier = value;
+            }))
+            .SetEase(Ease.InCubic)
+            .Join(coraImage.transform.DOLocalMoveY(0,2))
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                onlaunchend.OnNext(Unit.Default);
+                launchSequence.Kill();
+            });
+        
+    }
+
+    public void LaunchEnd()
+    {
+        jetEffect.GetComponent<ParticleSystem>().Stop();
+        jetEffect.SetActive(false);
     }
 
     private void OnDisable()
