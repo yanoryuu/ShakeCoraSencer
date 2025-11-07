@@ -360,7 +360,7 @@ public class IngameView : MonoBehaviour
                 psem.rateOverTimeMultiplier = value;
             }))
             .SetEase(Ease.InCubic)
-            .Join(coraImage.transform.DOLocalMoveY(200,time/5))
+            .Join(coraImage.transform.DOLocalMoveY(150,time/5))
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
