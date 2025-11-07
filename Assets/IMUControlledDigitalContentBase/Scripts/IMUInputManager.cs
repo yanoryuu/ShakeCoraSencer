@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO.Ports;
 using System.Threading.Tasks;
 using R3;
+using UnityEngine.SceneManagement;
 
 [ExecuteAlways, RequireComponent(typeof(IMUKeyboardEmulator))]
 public class IMUInputManager : MonoBehaviour
@@ -134,6 +133,7 @@ public class IMUInputManager : MonoBehaviour
     void Awake()
     {
         _keyboardEmulator = GetComponent<IMUKeyboardEmulator>();    
+        
     }
 
     void Start()
@@ -147,6 +147,8 @@ public class IMUInputManager : MonoBehaviour
             // シリアル通信を開始（シリアルポートを開く）
             Open();
         }
+        
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()

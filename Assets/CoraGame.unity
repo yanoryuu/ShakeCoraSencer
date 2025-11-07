@@ -321,15 +321,15 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4283322111
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 1, g: 0.3137255, b: 0.31764707, a: 1}
+    topRight: {r: 1, g: 0.3160377, b: 0.3160377, a: 1}
+    bottomLeft: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+    bottomRight: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -391,6 +391,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61730044}
   m_CullTransparentMesh: 1
+--- !u!1 &64824593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 64824597}
+  - component: {fileID: 64824596}
+  - component: {fileID: 64824595}
+  - component: {fileID: 64824594}
+  m_Layer: 0
+  m_Name: ObstacleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &64824594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64824593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b479ce90592f4698b37c37a36c26cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooler: {fileID: 64824596}
+  mainCamera: {fileID: 1591729484}
+  spawnInterval: 1.5
+  preSpawnOffset: 2
+  minX: -850
+  maxX: 850
+--- !u!114 &64824595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64824593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838c61082ce06435586a948eda1e93d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hideOffset: 2
+--- !u!114 &64824596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64824593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7887c127d4db4c49b82615b6188b4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefab: {fileID: 6694027965765801102, guid: addd68e9c02964eb791fd47fb0c4d1b7, type: 3}
+  poolSize: 10
+  backgroundParent: {fileID: 434794732}
+--- !u!4 &64824597
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64824593}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -153.65627, y: 1095.0356, z: -9.892575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &110104000
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,142 +854,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202764442}
   m_CullTransparentMesh: 1
---- !u!1 &343496956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 343496957}
-  - component: {fileID: 343496959}
-  - component: {fileID: 343496958}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &343496957
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343496956}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1386593167}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &343496958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343496956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Retry
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &343496959
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343496956}
-  m_CullTransparentMesh: 1
 --- !u!1 &344241131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1155,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 688332053}
+  - {fileID: 434794732}
   - {fileID: 344241132}
   - {fileID: 1118420688}
   - {fileID: 1898070020}
@@ -1247,7 +1191,7 @@ MonoBehaviour:
   thumbImage: {fileID: 1152215088}
   fingerImage: {fileID: 1190946836}
   paramImage: {fileID: 1423590108}
-  backGround: {fileID: 688332052}
+  backGround: {fileID: 434794731}
   coraEneImage: {fileID: 1898070019}
   jetEffect: {fileID: 1798767861}
   coraCO2Bar: {fileID: 947288652}
@@ -1258,6 +1202,42 @@ MonoBehaviour:
   uvLoopSeconds: 4
   uvIgnoreTimeScale: 1
   debugButton: {fileID: 1178317079}
+--- !u!1 &434794731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434794732}
+  m_Layer: 0
+  m_Name: backgroundPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &434794732
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434794731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 688332053}
+  m_Father: {fileID: 381013497}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -564}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &448747112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1271,6 +1251,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: AutoOpenSerial
       value: 1
       objectReference: {fileID: 0}
@@ -1279,8 +1263,12 @@ PrefabInstance:
       value: /dev/tty.usbserial-569C0163381
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: ShowSettingWindow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: _serialPortNames.Array.size
-      value: 135
+      value: 133
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[0]'
@@ -1500,319 +1488,319 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[54]'
-      value: /dev/ttys000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[55]'
-      value: /dev/ttys001
-      objectReference: {fileID: 0}
-    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[56]'
       value: /dev/ttys1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[57]'
+      propertyPath: '_serialPortNames.Array.data[55]'
       value: /dev/ttys2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[58]'
+      propertyPath: '_serialPortNames.Array.data[56]'
       value: /dev/ttys3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[59]'
+      propertyPath: '_serialPortNames.Array.data[57]'
       value: /dev/ttys4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[60]'
+      propertyPath: '_serialPortNames.Array.data[58]'
       value: /dev/ttys5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[61]'
+      propertyPath: '_serialPortNames.Array.data[59]'
       value: /dev/ttys6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[62]'
+      propertyPath: '_serialPortNames.Array.data[60]'
       value: /dev/ttys7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[63]'
+      propertyPath: '_serialPortNames.Array.data[61]'
       value: /dev/ttys8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[64]'
+      propertyPath: '_serialPortNames.Array.data[62]'
       value: /dev/ttys9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[65]'
+      propertyPath: '_serialPortNames.Array.data[63]'
       value: /dev/ttysa
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[66]'
+      propertyPath: '_serialPortNames.Array.data[64]'
       value: /dev/ttysb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[67]'
+      propertyPath: '_serialPortNames.Array.data[65]'
       value: /dev/ttysc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[68]'
+      propertyPath: '_serialPortNames.Array.data[66]'
       value: /dev/ttysd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[69]'
+      propertyPath: '_serialPortNames.Array.data[67]'
       value: /dev/ttyse
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[70]'
+      propertyPath: '_serialPortNames.Array.data[68]'
       value: /dev/ttysf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[71]'
+      propertyPath: '_serialPortNames.Array.data[69]'
       value: /dev/ttyt0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[72]'
+      propertyPath: '_serialPortNames.Array.data[70]'
       value: /dev/ttyt1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[73]'
+      propertyPath: '_serialPortNames.Array.data[71]'
       value: /dev/ttyt2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[74]'
+      propertyPath: '_serialPortNames.Array.data[72]'
       value: /dev/ttyt3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[75]'
+      propertyPath: '_serialPortNames.Array.data[73]'
       value: /dev/ttyt4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[76]'
+      propertyPath: '_serialPortNames.Array.data[74]'
       value: /dev/ttyt5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[77]'
+      propertyPath: '_serialPortNames.Array.data[75]'
       value: /dev/ttyt6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[78]'
+      propertyPath: '_serialPortNames.Array.data[76]'
       value: /dev/ttyt7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[79]'
+      propertyPath: '_serialPortNames.Array.data[77]'
       value: /dev/ttyt8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[80]'
+      propertyPath: '_serialPortNames.Array.data[78]'
       value: /dev/ttyt9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[81]'
+      propertyPath: '_serialPortNames.Array.data[79]'
       value: /dev/ttyta
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[82]'
+      propertyPath: '_serialPortNames.Array.data[80]'
       value: /dev/ttytb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[83]'
+      propertyPath: '_serialPortNames.Array.data[81]'
       value: /dev/ttytc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[84]'
+      propertyPath: '_serialPortNames.Array.data[82]'
       value: /dev/ttytd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[85]'
+      propertyPath: '_serialPortNames.Array.data[83]'
       value: /dev/ttyte
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[86]'
+      propertyPath: '_serialPortNames.Array.data[84]'
       value: /dev/ttytf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[87]'
+      propertyPath: '_serialPortNames.Array.data[85]'
       value: /dev/ttyu0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[88]'
+      propertyPath: '_serialPortNames.Array.data[86]'
       value: /dev/ttyu1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[89]'
+      propertyPath: '_serialPortNames.Array.data[87]'
       value: /dev/ttyu2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[90]'
+      propertyPath: '_serialPortNames.Array.data[88]'
       value: /dev/ttyu3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[91]'
+      propertyPath: '_serialPortNames.Array.data[89]'
       value: /dev/ttyu4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[92]'
+      propertyPath: '_serialPortNames.Array.data[90]'
       value: /dev/ttyu5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[93]'
+      propertyPath: '_serialPortNames.Array.data[91]'
       value: /dev/ttyu6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[94]'
+      propertyPath: '_serialPortNames.Array.data[92]'
       value: /dev/ttyu7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[95]'
+      propertyPath: '_serialPortNames.Array.data[93]'
       value: /dev/ttyu8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[96]'
+      propertyPath: '_serialPortNames.Array.data[94]'
       value: /dev/ttyu9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[97]'
+      propertyPath: '_serialPortNames.Array.data[95]'
       value: /dev/ttyua
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[98]'
+      propertyPath: '_serialPortNames.Array.data[96]'
       value: /dev/ttyub
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[99]'
+      propertyPath: '_serialPortNames.Array.data[97]'
       value: /dev/ttyuc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[100]'
+      propertyPath: '_serialPortNames.Array.data[98]'
       value: /dev/ttyud
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[101]'
+      propertyPath: '_serialPortNames.Array.data[99]'
       value: /dev/ttyue
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[102]'
+      propertyPath: '_serialPortNames.Array.data[100]'
       value: /dev/ttyuf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[103]'
+      propertyPath: '_serialPortNames.Array.data[101]'
       value: /dev/ttyv0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[104]'
+      propertyPath: '_serialPortNames.Array.data[102]'
       value: /dev/ttyv1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[105]'
+      propertyPath: '_serialPortNames.Array.data[103]'
       value: /dev/ttyv2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[106]'
+      propertyPath: '_serialPortNames.Array.data[104]'
       value: /dev/ttyv3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[107]'
+      propertyPath: '_serialPortNames.Array.data[105]'
       value: /dev/ttyv4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[108]'
+      propertyPath: '_serialPortNames.Array.data[106]'
       value: /dev/ttyv5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[109]'
+      propertyPath: '_serialPortNames.Array.data[107]'
       value: /dev/ttyv6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[110]'
+      propertyPath: '_serialPortNames.Array.data[108]'
       value: /dev/ttyv7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[111]'
+      propertyPath: '_serialPortNames.Array.data[109]'
       value: /dev/ttyv8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[112]'
+      propertyPath: '_serialPortNames.Array.data[110]'
       value: /dev/ttyv9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[113]'
+      propertyPath: '_serialPortNames.Array.data[111]'
       value: /dev/ttyva
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[114]'
+      propertyPath: '_serialPortNames.Array.data[112]'
       value: /dev/ttyvb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[115]'
+      propertyPath: '_serialPortNames.Array.data[113]'
       value: /dev/ttyvc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[116]'
+      propertyPath: '_serialPortNames.Array.data[114]'
       value: /dev/ttyvd
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[117]'
+      propertyPath: '_serialPortNames.Array.data[115]'
       value: /dev/ttyve
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[118]'
+      propertyPath: '_serialPortNames.Array.data[116]'
       value: /dev/ttyvf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[119]'
+      propertyPath: '_serialPortNames.Array.data[117]'
       value: /dev/ttyw0
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[120]'
+      propertyPath: '_serialPortNames.Array.data[118]'
       value: /dev/ttyw1
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[121]'
+      propertyPath: '_serialPortNames.Array.data[119]'
       value: /dev/ttyw2
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[122]'
+      propertyPath: '_serialPortNames.Array.data[120]'
       value: /dev/ttyw3
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[123]'
+      propertyPath: '_serialPortNames.Array.data[121]'
       value: /dev/ttyw4
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[124]'
+      propertyPath: '_serialPortNames.Array.data[122]'
       value: /dev/ttyw5
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[125]'
+      propertyPath: '_serialPortNames.Array.data[123]'
       value: /dev/ttyw6
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[126]'
+      propertyPath: '_serialPortNames.Array.data[124]'
       value: /dev/ttyw7
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[127]'
+      propertyPath: '_serialPortNames.Array.data[125]'
       value: /dev/ttyw8
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[128]'
+      propertyPath: '_serialPortNames.Array.data[126]'
       value: /dev/ttyw9
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[129]'
+      propertyPath: '_serialPortNames.Array.data[127]'
       value: /dev/ttywa
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[130]'
+      propertyPath: '_serialPortNames.Array.data[128]'
       value: /dev/ttywb
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[131]'
+      propertyPath: '_serialPortNames.Array.data[129]'
       value: /dev/ttywc
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
-      propertyPath: '_serialPortNames.Array.data[132]'
+      propertyPath: '_serialPortNames.Array.data[130]'
       value: /dev/ttywd
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: '_serialPortNames.Array.data[131]'
+      value: /dev/ttywe
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
+      propertyPath: '_serialPortNames.Array.data[132]'
+      value: /dev/ttywf
       objectReference: {fileID: 0}
     - target: {fileID: 2958856774947688520, guid: 82d89cb6dd8bcba43bea122f4dacd753, type: 3}
       propertyPath: '_serialPortNames.Array.data[133]'
@@ -2049,15 +2037,15 @@ RectTransform:
   m_GameObject: {fileID: 688332052}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 17.149998, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 17.149992, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 381013497}
+  m_Father: {fileID: 434794732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8671.414}
-  m_SizeDelta: {x: 1820, y: 977.1719}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 9285.418}
+  m_SizeDelta: {x: 1820, y: 1077.1719}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &688332054
 MonoBehaviour:
@@ -2799,142 +2787,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &1077535454
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1077535455}
-  - component: {fileID: 1077535457}
-  - component: {fileID: 1077535456}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1077535455
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077535454}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1304093680}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1077535456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077535454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Start
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1077535457
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1077535454}
-  m_CullTransparentMesh: 1
 --- !u!1 &1100700887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,7 +2949,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1423590109}
   - {fileID: 1306395031}
@@ -3488,16 +3340,15 @@ RectTransform:
   m_GameObject: {fileID: 1304093679}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.9099998, y: 3.9099998, z: 3.9099998}
+  m_LocalScale: {x: 11.76, y: 11.76, z: 11.76}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 1077535455}
+  m_Children: []
   m_Father: {fileID: 1774571127}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -364}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 40, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304093681
 MonoBehaviour:
@@ -3518,7 +3369,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3528,10 +3379,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 1554739146246150355, guid: 167dee28536ce4223b3aed0f3873574a, type: 3}
+    m_PressedSprite: {fileID: -8087965150140409821, guid: 7a3b695c0a90e40efa9081ae3c822b1f, type: 3}
+    m_SelectedSprite: {fileID: 1554739146246150355, guid: 167dee28536ce4223b3aed0f3873574a, type: 3}
+    m_DisabledSprite: {fileID: 1554739146246150355, guid: 167dee28536ce4223b3aed0f3873574a, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -3563,8 +3414,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1554739146246150355, guid: 167dee28536ce4223b3aed0f3873574a, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3592,6 +3443,8 @@ GameObject:
   - component: {fileID: 1306395031}
   - component: {fileID: 1306395033}
   - component: {fileID: 1306395032}
+  - component: {fileID: 1306395034}
+  - component: {fileID: 1306395035}
   m_Layer: 5
   m_Name: Cora
   m_TagString: Untagged
@@ -3657,6 +3510,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306395030}
   m_CullTransparentMesh: 1
+--- !u!50 &1306395034
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306395030}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!68 &1306395035
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306395030}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &1355384781
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,16 +3748,15 @@ RectTransform:
   m_GameObject: {fileID: 1386593166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.1008751, y: 2.1008751, z: 2.1008751}
+  m_LocalScale: {x: 7.0000005, y: 7.0000005, z: 7.0000005}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 343496957}
+  m_Children: []
   m_Father: {fileID: 1430106320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 285.83337, y: -251.53339}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 40, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386593168
 MonoBehaviour:
@@ -3855,7 +3777,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -3865,9 +3787,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 4252961299534214709, guid: f8c9ce0aab40f4fca92311a14e799589, type: 3}
+    m_PressedSprite: {fileID: 3263042817194429584, guid: 44b979299a37b43e28a3ccad8bb8918e, type: 3}
+    m_SelectedSprite: {fileID: 4252961299534214709, guid: f8c9ce0aab40f4fca92311a14e799589, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -3900,8 +3822,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 4252961299534214709, guid: f8c9ce0aab40f4fca92311a14e799589, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9243,16 +9165,15 @@ RectTransform:
   m_GameObject: {fileID: 1974300994}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.1008751, y: 2.1008751, z: 2.1008751}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2119779891}
+  m_Children: []
   m_Father: {fileID: 1430106320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -285.83337, y: -251.53339}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 40, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1974300996
 MonoBehaviour:
@@ -9273,7 +9194,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -9283,9 +9204,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 3073594021736139770, guid: 09afb8f21a1ea4c93b22dd90e755c84d, type: 3}
+    m_PressedSprite: {fileID: 7802883402865587045, guid: 31e773bf3ed6544d29d231ec21f7d13e, type: 3}
+    m_SelectedSprite: {fileID: 3073594021736139770, guid: 09afb8f21a1ea4c93b22dd90e755c84d, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -9318,8 +9239,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 3073594021736139770, guid: 09afb8f21a1ea4c93b22dd90e755c84d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9461,142 +9382,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!1 &2119779890
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2119779891}
-  - component: {fileID: 2119779893}
-  - component: {fileID: 2119779892}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2119779891
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119779890}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1974300995}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2119779892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119779890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Home
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &2119779893
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119779890}
-  m_CullTransparentMesh: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -9606,3 +9391,4 @@ SceneRoots:
   - {fileID: 907918747}
   - {fileID: 1004153319}
   - {fileID: 1130167796}
+  - {fileID: 64824597}

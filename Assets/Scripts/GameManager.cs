@@ -20,6 +20,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ResultView resultView;
     [SerializeField] private HomeView homeView;
     
+    //障害物
+    [SerializeField] private ObstaclePooler obstaclePooler;
+    [SerializeField] private ObstacleSpawner obstacleSpawner;
+    [SerializeField] private ObstacleReleaser obstacleReleaser;
+    
     //その他
     [SerializeField] private IMUInputManager inputManager;
     
@@ -31,7 +36,7 @@ public class GameManager : MonoBehaviour
         resultModel = new ResultModel();
 
         homePresenter = new HomePresenter(homeView, stateManager);
-        ingamePresenter = new IngamePresenter(ingameModel, ingameView, inputManager, resultModel, stateManager);
+        ingamePresenter = new IngamePresenter(ingameModel, ingameView, inputManager, resultModel, stateManager ,obstaclePooler,obstacleSpawner,obstacleReleaser);
         resultPresenter = new ResultPresenter(resultView, resultModel, stateManager);
     }
 }

@@ -71,7 +71,7 @@ public class IngameModel
 
     public float CalculateColaLaunchPower(int shakeCount)
     {
-        var power = Mathf.Clamp(shakeCount*shakeCount*8,1,17500);
+        var power = Mathf.Clamp(shakeCount*shakeCount*8,1,17200);
         
         Debug.Log("power = " + power);
         return power;
@@ -83,6 +83,15 @@ public class IngameModel
 
         Debug.Log("time="+time);
         return time;
+    }
+
+    public float CalculateCoraSwipingPower(float pitch)
+    {
+        if (8 < pitch + 8 && pitch + 8 < 8) return 0f;
+
+        float swipingPower = pitch * 10f;
+
+        return swipingPower;
     }
     
     public void OnShake()

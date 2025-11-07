@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using R3;
+using R3.Triggers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,6 +59,10 @@ public class IngameView : MonoBehaviour
     public Subject<Unit> onlaunch = new Subject<Unit>();
     
     public Subject<Unit> onlaunchend = new Subject<Unit>();
+    
+    public Subject<Unit> onHitObstacle = new Subject<Unit>();
+    
+    private CompositeDisposable launchDisposables = new CompositeDisposable();
 
     private void Awake()
     {
@@ -65,6 +71,8 @@ public class IngameView : MonoBehaviour
     }
     public void Initialize()
     {
+        launchDisposables = new CompositeDisposable();
+        
         // Filled必須
         coraTimerBar.type = Image.Type.Filled;
         coraCO2Mask.type = Image.Type.Filled;
@@ -97,6 +105,7 @@ public class IngameView : MonoBehaviour
         
         //コーラ画像場所の初期化
         coraImage.transform.localPosition = new Vector3(0, 900, 0);
+        coraImage.transform.localEulerAngles = new Vector3(0, 0, 0);
         
         //「ふれ！」画像表示
         shakeImg.SetActive(false);
@@ -116,6 +125,11 @@ public class IngameView : MonoBehaviour
         
         //背景画像位置の初期化
         backGround.transform.localPosition = backGroundInitPos;
+        backGround.transform.DOScale(new Vector3(3,3,3),0.5f);
+
+        handImage.transform.DOScale(new Vector3(1, 1, 1), 1);
+        
+        scoreText.gameObject.SetActive(false);
     }
 
     //カウントダウン表示
@@ -296,7 +310,9 @@ public class IngameView : MonoBehaviour
         timerText.gameObject.SetActive(false);
         shakeImg.SetActive(false);
         preparationLaunchSequence = DOTween.Sequence()
-            .Append(coraImage.transform.DOLocalMove(new Vector3(0, -240, 0), 0.5f))
+            .Append(backGround.transform.DOScale(new Vector3(1,1,1),1))
+            .Join(handImage.transform.DOScale(new Vector3(0.5f,0.5f,0.5f),1))
+            .Append(coraImage.transform.DOLocalMove(new Vector3(0, -500, 0), 0.5f))
             .Join(coraImage.transform.DORotate(new Vector3(0, 0, 180), 0.5f, RotateMode.FastBeyond360))
             .Join(thumbImage.GetComponent<Image>().DOFade(0,0.5f))
             .Join(fingerImage.GetComponent<Image>().DOFade(0,0.5f))
@@ -321,10 +337,15 @@ public class IngameView : MonoBehaviour
         
         Debug.Log($"Power = {power}");
         
-        
+        coraEneImage.SetActive(false);
+
+        coraImage.gameObject.OnTriggerEnter2DAsObservable()
+            .Subscribe(hit =>
+            {
+                if (hit.gameObject.CompareTag("Obstacle")) onHitObstacle.OnNext(Unit.Default);
+            }).AddTo(launchDisposables);
         
         launchSequence = DOTween.Sequence();
-        coraEneImage.SetActive(false);
         launchSequence.Append(backGround.transform.DOLocalMoveY(backGround.transform.localPosition.y-power, time))
             .Join(DOVirtual.Float(0,power,time, value =>
             {
@@ -337,20 +358,56 @@ public class IngameView : MonoBehaviour
                 psem.rateOverTimeMultiplier = value;
             }))
             .SetEase(Ease.InCubic)
-            .Join(coraImage.transform.DOLocalMoveY(0,2))
+            .Join(coraImage.transform.DOLocalMoveY(200,time/5))
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
                 onlaunchend.OnNext(Unit.Default);
-                launchSequence.Kill();
             });
-        
+    }
+
+    public void MoveCora(float swipVct)
+    {
+        if (-1750 < coraImage.transform.localPosition.x || coraImage.transform.localPosition.x < 1750)
+        {
+            coraImage.transform.Translate(new Vector3(swipVct * Time.deltaTime, 0, 0));
+        }else if (coraImage.transform.localPosition.x < -1750)
+        {
+            if (swipVct < 0) return;
+            coraImage.transform.Translate(new Vector3(swipVct * Time.deltaTime, 0, 0));
+        }else if (1750 < coraImage.transform.localPosition.x)
+        {
+            if (swipVct > 0) return;
+            coraImage.transform.Translate(new Vector3(swipVct * Time.deltaTime, 0, 0));       
+        }
     }
 
     public void LaunchEnd()
     {
+        //シークエンスを切る
+        launchSequence.Kill();
+        
+        launchDisposables.Dispose();
+        
         jetEffect.GetComponent<ParticleSystem>().Stop();
         jetEffect.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+    }
+
+    public async UniTask hitObstacle()
+    {
+        Debug.Log("💥 障害物ヒット！揺れ開始");
+
+        // DOTween シーケンス（揺れアニメーション）
+        Sequence seq = DOTween.Sequence();
+        seq.Append(coraImage.transform.DOShakePosition(0.3f, 30, 10, 90f, false, true))
+            .Join(coraImage.transform.DOShakeRotation(0.7f, 10, 10))
+            .SetEase(Ease.OutCubic);
+
+        // DOTween は await で待機できる（AsyncWaitForCompletion）
+        await seq.AsyncWaitForCompletion();
+
+        Debug.Log("✅ 揺れ完了");
     }
 
     private void OnDisable()

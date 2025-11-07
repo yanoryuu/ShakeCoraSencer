@@ -10,23 +10,34 @@ public class IngamePresenter : IPresenter
     private ResultModel resultModel;
     private IMUInputManager inputManager;
     private StateManager stateManager;
+    private ObstaclePooler obstaclePooler;
+    private ObstacleSpawner obstacleSpawner;
+    private ObstacleReleaser obstacleReleaser;
 
     private CompositeDisposable gameDisposables;
     private CompositeDisposable uiDisposables;
+    private CompositeDisposable launchDisposables;
     
     public IngamePresenter(
         IngameModel model, 
         IngameView view, 
         IMUInputManager inputManager,
         ResultModel resultModel,
-        StateManager stateManager)
+        StateManager stateManager,
+        ObstaclePooler obstaclePooler,
+        ObstacleSpawner obstacleSpawner,
+        ObstacleReleaser obstacleReleaser)
     {
         this.model = model;
         this.view = view;
         this.inputManager = inputManager;
         this.resultModel = resultModel;
         this.stateManager = stateManager;
+        this.obstaclePooler = obstaclePooler;
+        this.obstacleSpawner = obstacleSpawner;
+        this.obstacleReleaser = obstacleReleaser;
         gameDisposables = new CompositeDisposable();
+        launchDisposables = new CompositeDisposable();
         uiDisposables = new CompositeDisposable();
         
         stateManager.RegisterOnEnter(GameState.ingame,Enter);
@@ -161,6 +172,22 @@ public class IngamePresenter : IPresenter
         resultModel.SetScore((int)launchPower);
         
         view.LaunchCora(launchPower,launchTime);
+        
+        Observable.EveryUpdate()
+            .Subscribe(_ =>
+            {
+                view.MoveCora(model.CalculateCoraSwipingPower(model.ahrs.Value.x));
+                obstacleSpawner.StartSpawning();
+                obstacleReleaser.Release();
+            })
+            .AddTo(launchDisposables);
+
+        view.onHitObstacle.Subscribe(async　_ =>
+            {
+                await view.hitObstacle();
+                LaunchEnd();
+            })
+            .AddTo(launchDisposables);
     }
     
     //発射完了
