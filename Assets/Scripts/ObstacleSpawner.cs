@@ -1,23 +1,25 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] private ObstaclePooler pooler;
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private float spawnInterval = 1.5f; // 何秒ごとに出すか
-    [SerializeField] private float preSpawnOffset = 2f;  // 画面に映る少し前（上）で出す
+    [SerializeField] private float spawnInterval = 1.5f;
     [SerializeField] private float minX = -850f;
     [SerializeField] private float maxX = 850f;
+    [SerializeField] private float spawnY = 900f;
+    [SerializeField] private Transform backgroundParent;
 
     private float timer;
+    private bool isSpawning;
 
-    private void Reset()
-    {
-        mainCamera = Camera.main;
-    }
+    // 👇 IngameView から参照するリスト
+    public readonly List<GameObject> ActiveObstacles = new();
 
-    public void StartSpawning()
+    public void Update()
     {
+        if (!isSpawning) return;
+
         timer += Time.deltaTime;
         if (timer >= spawnInterval)
         {
@@ -26,23 +28,38 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
+    public void BeginSpawn()
+    {
+        timer = 0f;
+        isSpawning = true;
+    }
+
+    public void StopSpawn()
+    {
+        isSpawning = false;
+    }
+
     private void Spawn()
     {
-        // カメラの上端よりちょい上のY座標を調べる
-        Vector3 top = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 1f, 0f));
-        float spawnY = top.y + preSpawnOffset;
-
-        // Xは指定範囲でランダム
         float spawnX = Random.Range(minX, maxX);
-
         var obstacle = pooler.GetFromPool();
-        obstacle.transform.position = new Vector3(spawnX, spawnY, 0f);
+        obstacle.transform.localPosition = new Vector3(spawnX, spawnY, 0f);
+        obstacle.transform.SetParent(backgroundParent);
+        obstacle.SetActive(true);
 
-        // 画面外に出たら戻すスクリプトにプールを渡す
+        // リストに追加
+        ActiveObstacles.Add(obstacle);
+
         var releaser = obstacle.GetComponent<ObstacleReleaser>();
         if (releaser != null)
         {
-            releaser.Setup(pooler, mainCamera);
+            releaser.Setup(pooler, this); // ← spawner も渡す
         }
+    }
+
+    // 👇 Releaser から呼ばれる
+    public void RemoveFromActive(GameObject obstacle)
+    {
+        ActiveObstacles.Remove(obstacle);
     }
 }

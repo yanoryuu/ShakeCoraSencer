@@ -3,27 +3,23 @@ using UnityEngine;
 public class ObstacleReleaser : MonoBehaviour
 {
     private ObstaclePooler pooler;
-    private Camera mainCamera;
-    [SerializeField] private float hideOffset = 2f; // ちょっと下に抜けたら消す
+    private ObstacleSpawner spawner;
+    [SerializeField] private float hideOffset = 2f;
 
-    public void Setup(ObstaclePooler pooler, Camera cam)
+    public void Setup(ObstaclePooler pooler, ObstacleSpawner spawner)
     {
         this.pooler = pooler;
-        this.mainCamera = cam;
+        this.spawner = spawner;
     }
 
-    public void Release()
+    public void Update()
     {
-        if (mainCamera == null || pooler == null) return;
+        if (pooler == null) return;
 
-        // カメラの下端
-        Vector3 bottom = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 0f, 0f));
-        float limitY = bottom.y - hideOffset;
-
-        if (transform.position.y < limitY)
+        if (transform.position.y < -126f)
         {
             pooler.ReturnToPool(gameObject);
+            spawner?.RemoveFromActive(gameObject);
         }
     }
-    
 }

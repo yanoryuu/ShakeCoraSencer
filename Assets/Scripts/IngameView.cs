@@ -63,6 +63,8 @@ public class IngameView : MonoBehaviour
     public Subject<Unit> onHitObstacle = new Subject<Unit>();
     
     private CompositeDisposable launchDisposables = new CompositeDisposable();
+    
+    public RectTransform CoraRectTransform => coraImage.GetComponent<RectTransform>();
 
     private void Awake()
     {
@@ -197,7 +199,7 @@ public class IngameView : MonoBehaviour
     //コーラを振った数が変わったとき
     public void OnShakeCora(int shakeCount)
     {
-        float p = Mathf.Clamp01(shakeCount / 45f); // 進行度 0→1
+        float p = Mathf.Clamp01((float)shakeCount / GameConst.maxShakeCount); // 進行度 0→1
         coraTimerBar.fillAmount = p;
         coraCO2Mask.fillAmount = p;
         
@@ -368,19 +370,16 @@ public class IngameView : MonoBehaviour
 
     public void MoveCora(float swipVct)
     {
-        if (-1750 < coraImage.transform.localPosition.x || coraImage.transform.localPosition.x < 1750)
-        {
-            coraImage.transform.Translate(new Vector3(swipVct * Time.deltaTime, 0, 0));
-        }else if (coraImage.transform.localPosition.x < -1750)
-        {
-            if (swipVct < 0) return;
-            coraImage.transform.Translate(new Vector3(swipVct * Time.deltaTime, 0, 0));
-        }else if (1750 < coraImage.transform.localPosition.x)
-        {
-            if (swipVct > 0) return;
-            coraImage.transform.Translate(new Vector3(swipVct * Time.deltaTime, 0, 0));       
-        }
+        float move = swipVct * Time.deltaTime*2f;
+        Vector3 pos = coraImage.transform.localPosition;
+
+        pos.x += move;
+        // x を -1750〜1750 に閉じ込める
+        pos.x = Mathf.Clamp(pos.x, -1750f, 1750f);
+
+        coraImage.transform.localPosition = pos;
     }
+
 
     public void LaunchEnd()
     {
@@ -396,12 +395,10 @@ public class IngameView : MonoBehaviour
 
     public async UniTask hitObstacle()
     {
-        Debug.Log("💥 障害物ヒット！揺れ開始");
 
         // DOTween シーケンス（揺れアニメーション）
         Sequence seq = DOTween.Sequence();
-        seq.Append(coraImage.transform.DOShakePosition(0.3f, 30, 10, 90f, false, true))
-            .Join(coraImage.transform.DOShakeRotation(0.7f, 10, 10))
+        seq.Append(coraImage.transform.DOShakePosition(0.5f, 30, 10, 90f, false, true))
             .SetEase(Ease.OutCubic);
 
         // DOTween は await で待機できる（AsyncWaitForCompletion）

@@ -147,8 +147,6 @@ public class IMUInputManager : MonoBehaviour
             // シリアル通信を開始（シリアルポートを開く）
             Open();
         }
-        
-        DontDestroyOnLoad(gameObject);
     }
 
     void Update()

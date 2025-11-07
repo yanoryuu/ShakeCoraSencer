@@ -5,7 +5,7 @@ public class ObstaclePooler : MonoBehaviour
 {
     [SerializeField] private GameObject obstaclePrefab;
     [SerializeField] private int poolSize = 10;
-    [SerializeField] private Transform backgroundParent; // Background をここに入れる
+    [SerializeField] private Transform canvasParent; // Canvas をここに入れる
 
     private readonly Queue<GameObject> pool = new Queue<GameObject>();
 
@@ -14,7 +14,7 @@ public class ObstaclePooler : MonoBehaviour
         // プールを作成
         for (int i = 0; i < poolSize; i++)
         {
-            var obj = Instantiate(obstaclePrefab, backgroundParent);
+            var obj = Instantiate(obstaclePrefab,canvasParent);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
@@ -31,7 +31,7 @@ public class ObstaclePooler : MonoBehaviour
         else
         {
             // 足りなくなったら増やしてもいい
-            obj = Instantiate(obstaclePrefab, backgroundParent);
+            obj = Instantiate(obstaclePrefab, canvasParent);
         }
 
         obj.SetActive(true);
@@ -41,6 +41,7 @@ public class ObstaclePooler : MonoBehaviour
     public void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);
+        obj.transform.SetParent(canvasParent);
         pool.Enqueue(obj);
     }
 }

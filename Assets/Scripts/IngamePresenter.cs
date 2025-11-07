@@ -10,9 +10,7 @@ public class IngamePresenter : IPresenter
     private ResultModel resultModel;
     private IMUInputManager inputManager;
     private StateManager stateManager;
-    private ObstaclePooler obstaclePooler;
     private ObstacleSpawner obstacleSpawner;
-    private ObstacleReleaser obstacleReleaser;
 
     private CompositeDisposable gameDisposables;
     private CompositeDisposable uiDisposables;
@@ -24,18 +22,14 @@ public class IngamePresenter : IPresenter
         IMUInputManager inputManager,
         ResultModel resultModel,
         StateManager stateManager,
-        ObstaclePooler obstaclePooler,
-        ObstacleSpawner obstacleSpawner,
-        ObstacleReleaser obstacleReleaser)
+        ObstacleSpawner obstacleSpawner)
     {
         this.model = model;
         this.view = view;
         this.inputManager = inputManager;
         this.resultModel = resultModel;
         this.stateManager = stateManager;
-        this.obstaclePooler = obstaclePooler;
         this.obstacleSpawner = obstacleSpawner;
-        this.obstacleReleaser = obstacleReleaser;
         gameDisposables = new CompositeDisposable();
         launchDisposables = new CompositeDisposable();
         uiDisposables = new CompositeDisposable();
@@ -54,13 +48,13 @@ public class IngamePresenter : IPresenter
     private void Bind()
     {
         inputManager.AccelerationSub.Subscribe(acc => model.SetAcceleration(acc))
-            .AddTo(gameDisposables);
-
-        inputManager.GyroSub.Subscribe(gyro => model.SetGyro(gyro))
-            .AddTo(gameDisposables);
+            .AddTo(launchDisposables);
+        //
+        // inputManager.GyroSub.Subscribe(gyro => model.SetGyro(gyro))
+        //     .AddTo(launchDisposables);
 
         inputManager.AhrsSub.Subscribe(ahrs => model.SetAhrs(ahrs))
-            .AddTo(gameDisposables);
+            .AddTo(launchDisposables);
 
         //判定
         model.acceleration
@@ -71,7 +65,7 @@ public class IngamePresenter : IPresenter
         //シェイクになった時
         model.isShaking
             .Where(shake => shake) 
-            .Subscribe(_ =>
+            .Subscribe(_ => 
             {
                 model.OnShake();
             })
@@ -95,16 +89,16 @@ public class IngamePresenter : IPresenter
                     case 0:
                         view.OnBarUP(0);
                         break;
-                    case 5:
+                    case (int)(GameConst.maxShakeCount*0.2f):
                         view.OnBarUP(1);
                         break;
-                    case 10:
+                    case (int)(GameConst.maxShakeCount*0.5f):
                         view.OnBarUP(2);
                         break;
-                    case 30:
+                    case (int)(GameConst.maxShakeCount*0.7f):
                         view.OnBarUP(3);
                         break;
-                    case 45:
+                    case GameConst.maxShakeCount:
                         view.OnBarUP(4);
                         break;
                 }
@@ -170,25 +164,49 @@ public class IngamePresenter : IPresenter
         var launchTime = model.CalculateCoraLaunchTime(model.shakeCount.Value);
 
         resultModel.SetScore((int)launchPower);
-        
-        view.LaunchCora(launchPower,launchTime);
-        
+
+        view.LaunchCora(launchPower, launchTime);
+        obstacleSpawner.BeginSpawn();
+
+        // === ① コーラ左右移動 ===
         Observable.EveryUpdate()
             .Subscribe(_ =>
             {
                 view.MoveCora(model.CalculateCoraSwipingPower(model.ahrs.Value.x));
-                obstacleSpawner.StartSpawning();
-                obstacleReleaser.Release();
             })
             .AddTo(launchDisposables);
 
-        view.onHitObstacle.Subscribe(async　_ =>
+        // === ② 障害物との矩形当たり判定 ===
+        var coraRect = view.CoraRectTransform; // ← Viewにプロパティを追加する（下記で説明）
+
+        Observable.EveryUpdate()
+            .Where(_ => obstacleSpawner != null)
+            .Subscribe(_ =>
+            {
+                foreach (var obs in obstacleSpawner.ActiveObstacles)
+                {
+                    if (!obs.activeInHierarchy) continue;
+                    var obsRect = obs.GetComponent<RectTransform>();
+                    if (coraRect.IsOverlapping(obsRect))
+                    {
+                        Debug.Log("💥 矩形で障害物にヒット！");
+                        view.onHitObstacle.OnNext(Unit.Default);
+                        break;
+                    }
+                }
+            })
+            .AddTo(launchDisposables);
+
+        // === ③ ヒット時のリアクション ===
+        view.onHitObstacle
+            .Subscribe(async _ =>
             {
                 await view.hitObstacle();
                 LaunchEnd();
             })
             .AddTo(launchDisposables);
     }
+
     
     //発射完了
     private void LaunchEnd()
@@ -197,6 +215,11 @@ public class IngamePresenter : IPresenter
         uiDisposables.Dispose();
         uiDisposables = new CompositeDisposable();
 
+        launchDisposables.Dispose();
+        launchDisposables = new CompositeDisposable();
+        
+        obstacleSpawner.StopSpawn();
+        
         Observable.Timer(TimeSpan.FromSeconds(1))
             .Subscribe(_ =>
             {

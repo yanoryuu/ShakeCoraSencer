@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 817102291748560626}
   - component: {fileID: 8086720306898691248}
   - component: {fileID: 2754248721133352869}
+  - component: {fileID: 7809295999237138798}
   m_Layer: 0
   m_Name: Obstacke
   m_TagString: Obstacle
@@ -147,3 +148,17 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &7809295999237138798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6694027965765801102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838c61082ce06435586a948eda1e93d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasParent: {fileID: 0}
+  hideOffset: 2

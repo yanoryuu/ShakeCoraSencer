@@ -9,6 +9,8 @@ public static class GameConst
     
     public const float shakeInterval = 200f;
     
+    public const int maxShakeCount = 100;
+    
     //発射用のパワー計算要定数
     public const float powerPerShot = 100f;
 }
