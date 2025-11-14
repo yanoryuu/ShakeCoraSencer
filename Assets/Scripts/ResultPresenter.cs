@@ -25,6 +25,7 @@ public class ResultPresenter : IPresenter
     public void Enter()
     {
         resultView.Initialize();
+        SoundManager.Instance.PlayBGM("Result");
         ShowScore();
     }
 
@@ -33,11 +34,13 @@ public class ResultPresenter : IPresenter
         resultView.onHome.Subscribe(_ =>
         {
             stateManager.ChangeState(GameState.home);
+            SoundManager.Instance.PlaySE("Button");
         }).AddTo(disposable);
 
         resultView.onRetry.Subscribe(_ =>
         {
             stateManager.ChangeState(GameState.ingame);
+            SoundManager.Instance.PlaySE("Button");
         }).AddTo(disposable);
     }
 

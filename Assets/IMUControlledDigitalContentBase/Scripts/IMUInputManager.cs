@@ -313,6 +313,18 @@ public class IMUInputManager : MonoBehaviour
         // シリアルポートを閉じる
         Close();
     }
+    
+    void OnDisable()
+    {
+        // シリアルポートを閉じる
+        Close();
+    }
+    
+    void OnApplicationQuit()
+    {
+        // シリアルポートを閉じる
+        Close();
+    }
 
     void OnGUI()
     {

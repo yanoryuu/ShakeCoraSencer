@@ -23,6 +23,7 @@ public class IngameView : MonoBehaviour
     [SerializeField] private GameObject backGround;
     [SerializeField] private GameObject coraEneImage;
     [SerializeField] private GameObject jetEffect;
+    [SerializeField] private ParticleSystem boomEffect;
 
     private Vector3 backGroundInitPos;
  
@@ -297,7 +298,7 @@ public class IngameView : MonoBehaviour
         _timerTween = null;
     }
 
-    public void StopUVScroll()
+    private void StopUVScroll()
     {
         _uvTween?.Kill();
         _uvTween = null;
@@ -395,7 +396,8 @@ public class IngameView : MonoBehaviour
 
     public async UniTask hitObstacle()
     {
-
+        boomEffect.Play();
+        
         // DOTween シーケンス（揺れアニメーション）
         Sequence seq = DOTween.Sequence();
         seq.Append(coraImage.transform.DOShakePosition(0.5f, 30, 10, 90f, false, true))

@@ -103,6 +103,7 @@ public class IngamePresenter : IPresenter
                         break;
                 }
                 view.OnShakeCora(count);
+                SoundManager.Instance.PlaySE("Shake");
             })
             .AddTo(gameDisposables);
 
@@ -135,6 +136,9 @@ public class IngamePresenter : IPresenter
             view.SetCountDownText(i);
             await UniTask.Delay(TimeSpan.FromSeconds(1));
         }
+        
+        SoundManager.Instance.PlayBGM("Preparation");
+        
         view.SetCountDownText(0);
         view.GameStart();
         Bind();
@@ -155,6 +159,7 @@ public class IngamePresenter : IPresenter
     private void PreparationLaunchCora()
     {
         view.PreparationLaunchCora();
+        SoundManager.Instance.FadeOutBGM(1f);
     }
     
     //発射
@@ -162,6 +167,10 @@ public class IngamePresenter : IPresenter
     {
         var launchPower = model.CalculateColaLaunchPower(model.shakeCount.Value);
         var launchTime = model.CalculateCoraLaunchTime(model.shakeCount.Value);
+        
+        //発射BGMに変更、発射図のSEを流す
+        SoundManager.Instance.PlaySE("LaunchCora");
+        SoundManager.Instance.PlayBGM("Launch");
 
         resultModel.SetScore((int)launchPower);
 
@@ -201,6 +210,7 @@ public class IngamePresenter : IPresenter
         view.onHitObstacle
             .Subscribe(async _ =>
             {
+                SoundManager.Instance.PlaySE("Boom");
                 await view.hitObstacle();
                 LaunchEnd();
             })
