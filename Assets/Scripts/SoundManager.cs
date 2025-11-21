@@ -47,6 +47,11 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"BGM '{name}' not found!");
             return;
         }
+<<<<<<< HEAD
+=======
+        
+        Debug.Log($"PlayBGM: {name}");
+>>>>>>> 773659cace3062712e24e9246fd6f0ad39581e81
 
         var clip = bgmDict[name];
 
@@ -96,7 +101,13 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"SE '{name}' not found!");
             return;
         }
+<<<<<<< HEAD
 
+=======
+        
+        Debug.Log($"PlaySE: {name}");
+        
+>>>>>>> 773659cace3062712e24e9246fd6f0ad39581e81
         seSource.PlayOneShot(seDict[name]);
     }
 
@@ -117,4 +128,8 @@ public class SoundManager : MonoBehaviour
     {
         audioMixer.SetFloat("SEVolume", Mathf.Log10(value) * 20);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 773659cace3062712e24e9246fd6f0ad39581e81

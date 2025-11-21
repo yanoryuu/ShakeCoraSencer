@@ -18,7 +18,9 @@ public class IngameModel
     
     public bool isReceivingShake { get;private set; } = false;
 
-    public ReactiveProperty<float> time;
+    public ReactiveProperty<float> time { get; private set;}
+
+    public ReactiveProperty<int> itemNum { get; private set;}
     
     public void Initialize()
     {
@@ -27,6 +29,8 @@ public class IngameModel
         shakeCount.Value = 0;
         
         time.Value = GameConst.limitTime;
+
+        itemNum.Value = 0;
     }
 
     public IngameModel()
@@ -37,6 +41,7 @@ public class IngameModel
         isShaking = new ReactiveProperty<bool>(false);
         shakeCount = new ReactiveProperty<int>(0);
         time = new ReactiveProperty<float>();
+        itemNum = new ReactiveProperty<int>();
     }
 
     public void SetAcceleration(Vector3 acceleration)
@@ -118,5 +123,10 @@ public class IngameModel
     public void OnShakeEnd()
     {
         isReceivingShake = false;
+    }
+
+    public void GetItem(int num = 1)
+    {
+        itemNum.Value += num;
     }
 }

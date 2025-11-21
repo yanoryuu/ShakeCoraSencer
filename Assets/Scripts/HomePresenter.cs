@@ -20,11 +20,13 @@ public class HomePresenter : IPresenter
         homeView.onStart.Subscribe(_ =>
         {
             stateManager.ChangeState(GameState.ingame);
+            SoundManager.Instance.PlaySE("Button");
         }).AddTo(disposables);
     }
 
-    public void Enter()
+    public async void Enter()
     {
         homeView.Initialize();
+        await SoundManager.Instance.PlayBGM("Home");
     }
 }

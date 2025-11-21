@@ -23,6 +23,8 @@ public class IngameView : MonoBehaviour
     [SerializeField] private GameObject backGround;
     [SerializeField] private GameObject coraEneImage;
     [SerializeField] private GameObject jetEffect;
+    [SerializeField] private ParticleSystem boomEffect;
+    [SerializeField] private TextMeshProUGUI getItemQuantityText;
 
     private Vector3 backGroundInitPos;
  
@@ -60,7 +62,7 @@ public class IngameView : MonoBehaviour
     
     public Subject<Unit> onlaunchend = new Subject<Unit>();
     
-    public Subject<Unit> onHitObstacle = new Subject<Unit>();
+    public Subject<GameObject> onHitObstacle = new Subject<GameObject>();
     
     private CompositeDisposable launchDisposables = new CompositeDisposable();
     
@@ -297,7 +299,7 @@ public class IngameView : MonoBehaviour
         _timerTween = null;
     }
 
-    public void StopUVScroll()
+    private void StopUVScroll()
     {
         _uvTween?.Kill();
         _uvTween = null;
@@ -340,12 +342,6 @@ public class IngameView : MonoBehaviour
         Debug.Log($"Power = {power}");
         
         coraEneImage.SetActive(false);
-
-        coraImage.gameObject.OnTriggerEnter2DAsObservable()
-            .Subscribe(hit =>
-            {
-                if (hit.gameObject.CompareTag("Obstacle")) onHitObstacle.OnNext(Unit.Default);
-            }).AddTo(launchDisposables);
         
         launchSequence = DOTween.Sequence();
         launchSequence.Append(backGround.transform.DOLocalMoveY(backGround.transform.localPosition.y-power, time))
@@ -395,7 +391,8 @@ public class IngameView : MonoBehaviour
 
     public async UniTask hitObstacle()
     {
-
+        boomEffect.Play();
+        
         // DOTween シーケンス（揺れアニメーション）
         Sequence seq = DOTween.Sequence();
         seq.Append(coraImage.transform.DOShakePosition(0.5f, 30, 10, 90f, false, true))
@@ -405,6 +402,11 @@ public class IngameView : MonoBehaviour
         await seq.AsyncWaitForCompletion();
 
         Debug.Log("✅ 揺れ完了");
+    }
+
+    public void OnHitItem(int quantity)
+    {
+        getItemQuantityText.text = $"アイテム獲得数: {quantity}個";
     }
 
     private void OnDisable()
