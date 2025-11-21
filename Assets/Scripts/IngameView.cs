@@ -24,6 +24,7 @@ public class IngameView : MonoBehaviour
     [SerializeField] private GameObject coraEneImage;
     [SerializeField] private GameObject jetEffect;
     [SerializeField] private ParticleSystem boomEffect;
+    [SerializeField] private TextMeshProUGUI getItemQuantityText;
 
     private Vector3 backGroundInitPos;
  
@@ -61,7 +62,7 @@ public class IngameView : MonoBehaviour
     
     public Subject<Unit> onlaunchend = new Subject<Unit>();
     
-    public Subject<Unit> onHitObstacle = new Subject<Unit>();
+    public Subject<GameObject> onHitObstacle = new Subject<GameObject>();
     
     private CompositeDisposable launchDisposables = new CompositeDisposable();
     
@@ -341,12 +342,6 @@ public class IngameView : MonoBehaviour
         Debug.Log($"Power = {power}");
         
         coraEneImage.SetActive(false);
-
-        coraImage.gameObject.OnTriggerEnter2DAsObservable()
-            .Subscribe(hit =>
-            {
-                if (hit.gameObject.CompareTag("Obstacle")) onHitObstacle.OnNext(Unit.Default);
-            }).AddTo(launchDisposables);
         
         launchSequence = DOTween.Sequence();
         launchSequence.Append(backGround.transform.DOLocalMoveY(backGround.transform.localPosition.y-power, time))
@@ -407,6 +402,11 @@ public class IngameView : MonoBehaviour
         await seq.AsyncWaitForCompletion();
 
         Debug.Log("✅ 揺れ完了");
+    }
+
+    public void OnHitItem(int quantity)
+    {
+        getItemQuantityText.text = $"アイテム獲得数: {quantity}個";
     }
 
     private void OnDisable()

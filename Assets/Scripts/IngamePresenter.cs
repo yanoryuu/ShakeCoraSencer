@@ -198,21 +198,26 @@ public class IngamePresenter : IPresenter
                     var obsRect = obs.GetComponent<RectTransform>();
                     if (coraRect.IsOverlapping(obsRect))
                     {
-                        Debug.Log("💥 矩形で障害物にヒット！");
-                        view.onHitObstacle.OnNext(Unit.Default);
+                        view.onHitObstacle.OnNext(obsRect.transform.gameObject);
                         break;
                     }
                 }
             })
             .AddTo(launchDisposables);
 
-        // === ③ ヒット時のリアクション ===
         view.onHitObstacle
-            .Subscribe(async _ =>
+            .Subscribe(async hitObj =>
             {
-                SoundManager.Instance.PlaySE("Boom");
-                await view.hitObstacle();
-                LaunchEnd();
+                if (hitObj.CompareTag("Obstacle"))
+                {
+                    SoundManager.Instance.PlaySE("Boom");
+                    await view.hitObstacle();
+                    LaunchEnd();
+                }else if (hitObj.CompareTag("NomalCora"))
+                {
+                    SoundManager.Instance.PlaySE("GetItem");
+                    model.GetItem();
+                }
             })
             .AddTo(launchDisposables);
     }
