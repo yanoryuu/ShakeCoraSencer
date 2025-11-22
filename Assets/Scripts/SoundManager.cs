@@ -7,15 +7,17 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    [Header("Audio Mixers")]
-    [SerializeField] private AudioMixer audioMixer;
+    [Header("Audio Mixers")] [SerializeField]
+    private AudioMixer audioMixer;
 
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource bgmSource;
+    [Header("Audio Sources")] [SerializeField]
+    private AudioSource bgmSource;
+
     [SerializeField] private AudioSource seSource;
 
-    [Header("Audio Clips")]
-    [SerializeField] private List<AudioClip> bgmClips = new();
+    [Header("Audio Clips")] [SerializeField]
+    private List<AudioClip> bgmClips = new();
+
     [SerializeField] private List<AudioClip> seClips = new();
 
     private Dictionary<string, AudioClip> bgmDict = new();
@@ -47,11 +49,8 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"BGM '{name}' not found!");
             return;
         }
-<<<<<<< HEAD
-=======
-        
+
         Debug.Log($"PlayBGM: {name}");
->>>>>>> 773659cace3062712e24e9246fd6f0ad39581e81
 
         var clip = bgmDict[name];
 
@@ -74,6 +73,7 @@ public class SoundManager : MonoBehaviour
             bgmSource.volume = Mathf.Lerp(startVol, 0f, t / time);
             await UniTask.Yield();
         }
+
         bgmSource.volume = 0f;
         bgmSource.Stop();
     }
@@ -88,6 +88,7 @@ public class SoundManager : MonoBehaviour
             bgmSource.volume = Mathf.Lerp(0f, 1f, t / time);
             await UniTask.Yield();
         }
+
         bgmSource.volume = 1f;
     }
 
@@ -101,13 +102,9 @@ public class SoundManager : MonoBehaviour
             Debug.LogWarning($"SE '{name}' not found!");
             return;
         }
-<<<<<<< HEAD
 
-=======
-        
         Debug.Log($"PlaySE: {name}");
-        
->>>>>>> 773659cace3062712e24e9246fd6f0ad39581e81
+
         seSource.PlayOneShot(seDict[name]);
     }
 
@@ -128,8 +125,4 @@ public class SoundManager : MonoBehaviour
     {
         audioMixer.SetFloat("SEVolume", Mathf.Log10(value) * 20);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 773659cace3062712e24e9246fd6f0ad39581e81
