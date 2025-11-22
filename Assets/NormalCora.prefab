@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 6564576391179329945}
   - component: {fileID: -7316736534102792125}
   - component: {fileID: 6041213795827176823}
-  - component: {fileID: -5289745931325273413}
+  - component: {fileID: -3640876700893372461}
   m_Layer: 5
-  m_Name: GoldCora
-  m_TagString: GoldCora
+  m_Name: NormalCora
+  m_TagString: NomalCora
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2812342079488187779, guid: 6d6079b1a6edb48d2a85d5d388a5dffc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14962073a30e3436aadd0d4ab14dd214, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -110,7 +110,7 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: 7e72450b8a12448a8886d1d8d71eed72, type: 2}
---- !u!114 &-5289745931325273413
+--- !u!114 &-3640876700893372461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

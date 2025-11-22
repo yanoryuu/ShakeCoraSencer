@@ -11,6 +11,8 @@ public class IngamePresenter : IPresenter
     private IMUInputManager inputManager;
     private StateManager stateManager;
     private ObstacleSpawner obstacleSpawner;
+    private ObstacleSpawner normalCoraSpawner;
+    private ObstacleSpawner goldCoraSpawner;
 
     private CompositeDisposable gameDisposables;
     private CompositeDisposable uiDisposables;
@@ -22,7 +24,9 @@ public class IngamePresenter : IPresenter
         IMUInputManager inputManager,
         ResultModel resultModel,
         StateManager stateManager,
-        ObstacleSpawner obstacleSpawner)
+        ObstacleSpawner obstacleSpawner,
+        ObstacleSpawner normalCoraSpawner,
+        ObstacleSpawner goldCoraSpawner)
     {
         this.model = model;
         this.view = view;
@@ -30,6 +34,8 @@ public class IngamePresenter : IPresenter
         this.resultModel = resultModel;
         this.stateManager = stateManager;
         this.obstacleSpawner = obstacleSpawner;
+        this.normalCoraSpawner = normalCoraSpawner;
+        this.goldCoraSpawner = goldCoraSpawner;
         gameDisposables = new CompositeDisposable();
         launchDisposables = new CompositeDisposable();
         uiDisposables = new CompositeDisposable();
@@ -61,7 +67,6 @@ public class IngamePresenter : IPresenter
             .Where(_=>model.isReceivingShake)
             .Subscribe(acc => model.DetectShake(acc))
             .AddTo(gameDisposables);
-        
         //シェイクになった時
         model.isShaking
             .Where(shake => shake) 
@@ -74,7 +79,7 @@ public class IngamePresenter : IPresenter
         model.time.Subscribe(time =>view.SetTimer(time))
             .AddTo(gameDisposables);
 
-        //ゲーム終了時
+        //フルフェーズ終了
         model.time.Where(time => time <= 0)
             .Subscribe(_ =>
             {
@@ -119,6 +124,12 @@ public class IngamePresenter : IPresenter
             {
                 LaunchEnd();
             })
+            .AddTo(uiDisposables);
+
+        model.goldCoraQuantity.Subscribe(quantity => view.SetHitGoldCora(quantity))
+            .AddTo(uiDisposables);
+        
+        model.normalCoraQuantity.Subscribe(quantity => view.SetHitNormalCora(quantity))
             .AddTo(uiDisposables);
         
         // //テスト用
@@ -172,27 +183,72 @@ public class IngamePresenter : IPresenter
         SoundManager.Instance.PlaySE("LaunchCora");
         SoundManager.Instance.PlayBGM("Launch");
 
-        resultModel.SetScore((int)launchPower);
+        resultModel.SetScore((int)launchPower,model.normalCoraQuantity.Value,model.goldCoraQuantity.Value);
 
         view.LaunchCora(launchPower, launchTime);
         obstacleSpawner.BeginSpawn();
+        normalCoraSpawner.BeginSpawn();
+        goldCoraSpawner.BeginSpawn();
 
         // === ① コーラ左右移動 ===
         Observable.EveryUpdate()
             .Subscribe(_ =>
             {
                 view.MoveCora(model.CalculateCoraSwipingPower(model.ahrs.Value.x));
+
+                if (Input.GetKey(KeyCode.LeftArrow)||Input.GetKey(KeyCode.A))
+                {
+                    view.MoveCora(-1);
+                }
+                else if(Input.GetKey(KeyCode.RightArrow)||Input.GetKey(KeyCode.D))
+                {
+                    view.MoveCora(1);
+                }
             })
             .AddTo(launchDisposables);
 
         // === ② 障害物との矩形当たり判定 ===
-        var coraRect = view.CoraRectTransform; // ← Viewにプロパティを追加する（下記で説明）
+        var coraRect = view.CoraRectTransform; 
 
         Observable.EveryUpdate()
             .Where(_ => obstacleSpawner != null)
             .Subscribe(_ =>
             {
                 foreach (var obs in obstacleSpawner.ActiveObstacles)
+                {
+                    if (!obs.activeInHierarchy) continue;
+                    var obsRect = obs.GetComponent<RectTransform>();
+                    if (coraRect.IsOverlapping(obsRect))
+                    {
+                        view.onHitObstacle.OnNext(obsRect.transform.gameObject);
+                        break;
+                    }
+                }
+            })
+            .AddTo(launchDisposables);
+        
+        Observable.EveryUpdate()
+            .Where(_ => normalCoraSpawner != null)
+            .Subscribe(_ =>
+            {
+                foreach (var obs in normalCoraSpawner.ActiveObstacles)
+                {
+                    if (!obs.activeInHierarchy) continue;
+                    var obsRect = obs.GetComponent<RectTransform>();
+                    if (coraRect.IsOverlapping(obsRect))
+                    {
+                        view.onHitObstacle.OnNext(obsRect.transform.gameObject);
+                        break;
+                    }
+                }
+            })
+            .AddTo(launchDisposables);
+        
+        Observable.EveryUpdate()
+            .Where(_ => goldCoraSpawner != null)
+            .Subscribe(_ =>
+            {
+                foreach (var obs in goldCoraSpawner.ActiveObstacles)
                 {
                     if (!obs.activeInHierarchy) continue;
                     var obsRect = obs.GetComponent<RectTransform>();
@@ -213,10 +269,14 @@ public class IngamePresenter : IPresenter
                     SoundManager.Instance.PlaySE("Boom");
                     await view.hitObstacle();
                     LaunchEnd();
-                }else if (hitObj.CompareTag("NomalCora"))
+                }else if (hitObj.CompareTag("NormalCora"))
                 {
                     SoundManager.Instance.PlaySE("GetItem");
-                    model.GetItem();
+                    model.GetItem(ItemType.normal);
+                }else if (hitObj.CompareTag("GoldCora"))
+                {
+                    SoundManager.Instance.PlaySE("GetItem");
+                    model.GetItem(ItemType.gold);
                 }
             })
             .AddTo(launchDisposables);
@@ -234,6 +294,8 @@ public class IngamePresenter : IPresenter
         launchDisposables = new CompositeDisposable();
         
         obstacleSpawner.StopSpawn();
+        normalCoraSpawner.StopSpawn();
+        goldCoraSpawner.StopSpawn();
         
         Observable.Timer(TimeSpan.FromSeconds(1))
             .Subscribe(_ =>

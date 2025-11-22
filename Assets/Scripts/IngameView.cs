@@ -24,7 +24,8 @@ public class IngameView : MonoBehaviour
     [SerializeField] private GameObject coraEneImage;
     [SerializeField] private GameObject jetEffect;
     [SerializeField] private ParticleSystem boomEffect;
-    [SerializeField] private TextMeshProUGUI getItemQuantityText;
+    [SerializeField] private TextMeshProUGUI getNormalCoraQuantityText;
+    [SerializeField] private TextMeshProUGUI getGoldCoraQuantityText;
 
     private Vector3 backGroundInitPos;
  
@@ -72,10 +73,20 @@ public class IngameView : MonoBehaviour
     {
         debugButton.onClick.AddListener(() => onshakedone.OnNext(Unit.Default));
         backGroundInitPos = backGround.transform.localPosition;
+        
+        Observable.EveryUpdate()
+            .Where(_ => Input.GetKeyDown(KeyCode.Space))
+            .Subscribe(_ =>
+            {
+                onshakedone.OnNext(Unit.Default);
+            })
+            .AddTo(this);
     }
     public void Initialize()
     {
         launchDisposables = new CompositeDisposable();
+        
+        
         
         // Filled必須
         coraTimerBar.type = Image.Type.Filled;
@@ -404,9 +415,14 @@ public class IngameView : MonoBehaviour
         Debug.Log("✅ 揺れ完了");
     }
 
-    public void OnHitItem(int quantity)
+    public void SetHitNormalCora(int quantity)
     {
-        getItemQuantityText.text = $"アイテム獲得数: {quantity}個";
+        getNormalCoraQuantityText.text = $"×{quantity}";
+    }
+
+    public void SetHitGoldCora(int quantity)
+    {
+        getGoldCoraQuantityText.text = $"×{quantity}";
     }
 
     private void OnDisable()

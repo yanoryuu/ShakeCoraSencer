@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - GoldCora
-  - NomalCora
+  - NormalCora
   layers:
   - Default
   - TransparentFX

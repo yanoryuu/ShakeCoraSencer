@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     //障害物
     [SerializeField] private ObstacleSpawner obstacleSpawner;
     
+    //アイテム
+    [SerializeField] private ObstacleSpawner normalCoraSpawner;
+    [SerializeField] private ObstacleSpawner goldCoraSpawner;
+    
     //その他
     [SerializeField] private IMUInputManager inputManager;
     
@@ -34,7 +38,7 @@ public class GameManager : MonoBehaviour
         resultModel = new ResultModel();
 
         homePresenter = new HomePresenter(homeView, stateManager);
-        ingamePresenter = new IngamePresenter(ingameModel, ingameView, inputManager, resultModel, stateManager ,obstacleSpawner);
+        ingamePresenter = new IngamePresenter(ingameModel, ingameView, inputManager, resultModel, stateManager ,obstacleSpawner, normalCoraSpawner, goldCoraSpawner);
         resultPresenter = new ResultPresenter(resultView, resultModel, stateManager);
     }
 }

@@ -30,7 +30,6 @@ public class ObstaclePooler : MonoBehaviour
         }
         else
         {
-            // 足りなくなったら増やしてもいい
             obj = Instantiate(obstaclePrefab, canvasParent);
         }
 

@@ -20,7 +20,8 @@ public class IngameModel
 
     public ReactiveProperty<float> time { get; private set;}
 
-    public ReactiveProperty<int> itemNum { get; private set;}
+    public ReactiveProperty<int> goldCoraQuantity { get; private set;}
+    public ReactiveProperty<int> normalCoraQuantity { get; private set;}
     
     public void Initialize()
     {
@@ -30,7 +31,8 @@ public class IngameModel
         
         time.Value = GameConst.limitTime;
 
-        itemNum.Value = 0;
+        normalCoraQuantity.Value = 0;
+        goldCoraQuantity.Value = 0;
     }
 
     public IngameModel()
@@ -41,7 +43,8 @@ public class IngameModel
         isShaking = new ReactiveProperty<bool>(false);
         shakeCount = new ReactiveProperty<int>(0);
         time = new ReactiveProperty<float>();
-        itemNum = new ReactiveProperty<int>();
+        goldCoraQuantity = new ReactiveProperty<int>(0);
+        normalCoraQuantity = new ReactiveProperty<int>(0);
     }
 
     public void SetAcceleration(Vector3 acceleration)
@@ -125,8 +128,22 @@ public class IngameModel
         isReceivingShake = false;
     }
 
-    public void GetItem(int num = 1)
+    public void GetItem(ItemType type,int num = 1)
     {
-        itemNum.Value += num;
+        switch (type)
+        {
+            case  ItemType.normal:
+                normalCoraQuantity.Value += num;
+                break;
+            case ItemType.gold:
+                goldCoraQuantity.Value += num;
+                break;
+        }
     }
+}
+
+public enum ItemType
+{
+    normal,
+    gold
 }

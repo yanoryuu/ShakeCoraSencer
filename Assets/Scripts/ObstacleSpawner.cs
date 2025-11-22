@@ -13,7 +13,6 @@ public class ObstacleSpawner : MonoBehaviour
     private float timer;
     private bool isSpawning;
 
-    // 👇 IngameView から参照するリスト
     public readonly List<GameObject> ActiveObstacles = new();
 
     public void Update()
